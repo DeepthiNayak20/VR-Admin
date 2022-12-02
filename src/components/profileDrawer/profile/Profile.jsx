@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { showProfileFn } from '../../../redux/showProfile'
-import EditProfile from '../editProfile/EditProfile'
+
 import './Profile.css'
 
 const Profile = () => {

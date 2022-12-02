@@ -4,7 +4,7 @@ import Drawer from 'react-modern-drawer'
 import 'react-modern-drawer/dist/index.css'
 import Profile from '../profileDrawer/profile/Profile'
 import EditProfile from '../profileDrawer/editProfile/EditProfile'
-import { Outlet, Routes, Route } from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 import ChangePassword from '../profileDrawer/changePassword/ChangePassword'
 import { showProfileFn } from '../../redux/showProfile'
