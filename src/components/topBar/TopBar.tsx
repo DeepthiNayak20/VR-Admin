@@ -2,13 +2,22 @@ import { useState } from 'react'
 import './TopBar.css'
 import Drawer from 'react-modern-drawer'
 import 'react-modern-drawer/dist/index.css'
+import Profile from '../profileDrawer/profile/Profile'
+import EditProfile from '../profileDrawer/editProfile/EditProfile'
+import { Outlet, Routes, Route } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import ChangePassword from '../profileDrawer/changePassword/ChangePassword'
+import { showProfileFn } from '../../redux/showProfile'
 
 const TopBar = () => {
+  const dispatch = useDispatch()
   // const [profileModal, setProfileModal] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState)
   }
+
+  const showProfile = useSelector((state: any) => state.showProfile.show)
   return (
     <div>
       <div className="topBar-Container">
@@ -27,7 +36,10 @@ const TopBar = () => {
             </div>
             <div
               className="topBar-profile"
-              onClick={toggleDrawer}
+              onClick={() => {
+                toggleDrawer()
+                dispatch(showProfileFn('profile'))
+              }}
               // onClick={() => {
               //   setProfileModal(false)
               // }}
@@ -50,7 +62,27 @@ const TopBar = () => {
         direction="right"
         className="bla bla bla"
       >
-        <div className="topBar-drawer">Hello World</div>
+        <div className="topBar-drawer">
+          <div className="topBar-drawerContainer">
+            <div className="topBar-drawerClose">
+              <img
+                src={require('../../assets/close@2x.png')}
+                alt=""
+                className="topbar-closeImg"
+                onClick={() => {
+                  toggleDrawer()
+                }}
+              />
+            </div>
+            {showProfile === 'profile' ? (
+              <Profile />
+            ) : showProfile === 'edit' ? (
+              <EditProfile />
+            ) : (
+              <ChangePassword />
+            )}
+          </div>
+        </div>
       </Drawer>
     </div>
   )

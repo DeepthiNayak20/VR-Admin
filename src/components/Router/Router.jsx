@@ -12,6 +12,9 @@ import Login from '../login/Login'
 import MainBoard from '../mainBoard/MainBoard'
 import NewPassword from '../newPassword/NewPassword'
 import OtpVerification from '../otpVerification/OtpVerification'
+import ChangePassword from '../profileDrawer/changePassword/ChangePassword'
+import EditProfile from '../profileDrawer/editProfile/EditProfile'
+import Profile from '../profileDrawer/profile/Profile'
 import StudentList from '../studentList/StudentList'
 
 const Router = () => {
@@ -33,6 +36,11 @@ const Router = () => {
           </Route>
           <Route path="studentList" element={<StudentList />} />
           <Route path="settings" element={<AdminPassword />} />
+
+          <Route path="profile" element={<Profile />}>
+            <Route path="editProfile" element={<EditProfile />} />
+            <Route path="changePassword" element={<ChangePassword />} />
+          </Route>
         </Route>
       </Routes>
     </div>

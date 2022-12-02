@@ -1,0 +1,70 @@
+.accordion__button:before {
+
+    position: absolute !important;
+    right: 49px !important;
+
+}
+
+.accordion {
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+}
+
+.accordion__button {
+    background-color: white !important;
+
+}
+
+.accordion__item {
+    background: white;
+}
+
+.accordion__button:before {
+    color: white;
+}
+
+button.QandA-button {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.QandA-containerItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.QandA-body {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.QandA-QuestionNo {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: #989898;
+}
+
+.QandA-head {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: #2B2B2B;
+}
+
+.QandA-QuestionContainer {
+    font-family: ProximaNovaSoft-Regular;
+}
+
+.accordion__item+.accordion__item {
+    border-top: none !important;
+}

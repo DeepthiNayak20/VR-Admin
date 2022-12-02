@@ -67,11 +67,10 @@ img.topBar-profileIcon {
 }
 
 /* modal */
-.topbar-modalContainer {
+/* .topbar-modalContainer {
     background-color: #0000002b;
     position: fixed;
     top: 0rem;
-    /* bottom: -46rem; */
     height: 100vh;
     width: 100vw;
     left: 0;
@@ -79,7 +78,6 @@ img.topBar-profileIcon {
 
 .topbarOverlay {
     display: flex;
-    /* align-items: flex-end; */
     flex-direction: column;
     width: 19rem;
     background: var(--primaryClr);
@@ -90,10 +88,29 @@ img.topBar-profileIcon {
     padding: 1rem;
     color: white;
     font-family: ProximaNovaSoft-Regular;
-}
+} */
 
 img.topbar-closeImg {
     width: 23px;
+}
+
+.EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+    width: 30% !important;
+}
+
+.topBar-drawer {
+    background-color: var(--primaryClr);
+    min-height: 100vh;
+    padding: 2rem 0rem;
+    color: white;
+}
+
+.topBar-drawerClose {
+    padding: 0rem 2rem;
+}
+
+.topBar-drawerContainer {
+    font-family: ProximaNovaSoft-Regular;
 }
 
 @media only screen and (max-width: 939px) {
@@ -107,13 +124,24 @@ img.topbar-closeImg {
 
         gap: 2rem;
     }
+
+    .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+        width: 40% !important;
+    }
 }
 
-.EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
-    width: 30% !important;
+@media only screen and (max-width: 1193px) {
+    .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+        width: 40% !important;
+    }
 }
 
-.topBar-drawer {
-    background-color: var(--primaryClr);
-    min-height: 100vh;
+@media only screen and (max-width: 800px) {
+    .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+        width: 100% !important;
+    }
+
+    .topBar-publish {
+        display: none;
+    }
 }
