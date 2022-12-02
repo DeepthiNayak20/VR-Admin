@@ -1,0 +1,77 @@
+.sideBarContainer {
+    position: fixed;
+    width: 18rem;
+    height: 100%;
+    left: 0;
+    top: 0px;
+    background: #ffffff;
+    border-radius: 2px;
+    color: black;
+    z-index: 0;
+}
+
+.sideBarImg {
+    width: 18rem;
+}
+
+img.sideBar-navTools {
+    width: 2rem;
+}
+
+.sideBar-linkNames {
+    text-decoration: none;
+}
+
+.sideBar-DashBoardContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 10px 24px;
+    width: 13rem;
+
+    border-radius: 15px;
+
+}
+
+.sideBar-imageContainer {
+    padding: 1rem 0rem 2rem 0rem;
+}
+
+.sideBar-dashBoard {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 48px;
+    gap: 13.66px;
+}
+
+.active.sideBar-linkNames {
+    background-color: var(--primaryClr);
+    width: 13rem;
+
+    border-radius: 15px;
+}
+
+.active>.sideBar-DashBoardContainer>.sideBar-Text {
+    color: #ffffff;
+
+}
+
+.active>.sideBar-DashBoardContainer>img.sideBar-navTools {
+    width: 2rem;
+    filter: invert(1);
+}
+
+.sideBar-Text {
+    display: flex;
+    /* align-items: center; */
+    /* text-decoration: none; */
+    /* align-content: space-evenly; */
+    /* justify-content: space-between; */
+    color: black;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: ProximaNovaSoft-Regular;
+}

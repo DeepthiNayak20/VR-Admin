@@ -1,0 +1,119 @@
+.dashBoard-topBar {
+    position: fixed;
+    left: 18rem;
+    right: 0px;
+}
+
+.topBar-addCourse {
+    position: relative;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 31px;
+    color: var(--dashboardFont);
+    font-family: ProximaNovaSoft-Regular;
+    /* padding-left: 24px; */
+}
+
+.topBar-Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4rem 1.7rem 3rem;
+}
+
+.topBar-headerIcons {
+    display: flex;
+    gap: 5rem;
+}
+
+.topBar-publish {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background-color: var(--secondaryClr);
+    padding: 7px 14px;
+    margin: 1rem 0rem;
+    border-radius: 2px;
+}
+
+img.topBar-profileIcon {
+    position: relative;
+    border-radius: 50%;
+    width: 43.25px;
+    /* height: 52px; */
+}
+
+.topBar-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topBar-publishText {
+    font-family: ProximaNovaSoft-Regular;
+    color: white;
+}
+
+.topBar-profileText {
+    font-family: ProximaNovaSoft-Regular;
+    text-align: center;
+    /* display: flex; */
+}
+
+.topbar-modalContainer {
+    background-color: red;
+}
+
+/* modal */
+.topbar-modalContainer {
+    background-color: #0000002b;
+    position: fixed;
+    top: 0rem;
+    /* bottom: -46rem; */
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+}
+
+.topbarOverlay {
+    display: flex;
+    /* align-items: flex-end; */
+    flex-direction: column;
+    width: 19rem;
+    background: var(--primaryClr);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 1rem;
+    color: white;
+    font-family: ProximaNovaSoft-Regular;
+}
+
+img.topbar-closeImg {
+    width: 23px;
+}
+
+@media only screen and (max-width: 939px) {
+
+    .topBar-Header {
+
+        padding: 1rem 1rem 1.7rem 1rem !important;
+    }
+
+    .topBar-headerIcons {
+
+        gap: 2rem;
+    }
+}
+
+.EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+    width: 30% !important;
+}
+
+.topBar-drawer {
+    background-color: var(--primaryClr);
+    min-height: 100vh;
+}

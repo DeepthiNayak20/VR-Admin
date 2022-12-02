@@ -1,0 +1,48 @@
+.active.addCourse-navLink {
+    border-bottom: 3px solid var(--secondaryClr);
+    font-family: ProximaNovaSoft-Regular;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #232323;
+}
+
+a.addCourse-navLink {
+    font-family: ProximaNovaSoft-Regular;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #B0B0B0;
+    text-decoration: none;
+}
+
+.addcourse-container {
+    display: flex;
+    gap: 6rem;
+    padding: 1rem 0rem 2rem 0;
+}
+
+@media only screen and (max-width: 1139px) {
+    .addcourse-container {
+        gap: 2rem;
+    }
+
+}
+
+@media only screen and (max-width: 995px) {
+    .active.addCourse-navLink {
+        font-size: 19px;
+    }
+
+    a.addCourse-navLink {
+        font-size: 19px;
+    }
+}
+
+@media only screen and (max-width: 853px) {
+    .addcourse-container {
+        gap: 1rem;
+    }
+}
