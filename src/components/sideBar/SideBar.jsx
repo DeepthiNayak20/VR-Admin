@@ -65,6 +65,7 @@ const SideBar = () => {
             </div>
           </NavLink>
         </div>
+        
       </div>
     </div>
   )

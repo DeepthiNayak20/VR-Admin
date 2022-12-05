@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import ChangePassword from '../profileDrawer/changePassword/ChangePassword'
 import { showProfileFn } from '../../redux/showProfile'
 
-
 const TopBar = () => {
   const dispatch = useDispatch()
   // const [profileModal, setProfileModal] = useState(true)
