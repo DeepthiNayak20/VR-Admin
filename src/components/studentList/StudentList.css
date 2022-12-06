@@ -1,6 +1,6 @@
 .studentList-container {
-    /* position: absolute; */
-    position: fixed;
+    position: absolute;
+    /* position: fixed; */
     z-index: -3;
     left: 288px;
     top: 109.274px;
@@ -8,7 +8,7 @@
     right: 0;
     height: 100%;
     background-color: #f9f9f9;
-    /* overflow: auto; */
+    overflow: auto;
     padding: 2rem;
     /* display: none; */
 }

@@ -52,11 +52,11 @@ img.sideBar-navTools {
   border-radius: 15px;
 }
 
-.active > .sideBar-DashBoardContainer > .sideBar-Text {
+.active>.sideBar-DashBoardContainer>.sideBar-Text {
   color: #ffffff;
 }
 
-.active > .sideBar-DashBoardContainer > img.sideBar-navTools {
+.active>.sideBar-DashBoardContainer>.sideBar-Item>img.sideBar-navTools {
   width: 2rem;
   filter: invert(1);
 }
@@ -68,10 +68,12 @@ img.sideBar-navTools {
   font-weight: 700;
   font-family: ProximaNovaSoft-Regular;
 }
+
 @media only screen and (max-width: 855px) {
   .sideBarContainer {
     height: unset;
   }
+
   .sideBar-dashBoard {
     position: fixed;
     background: white;
@@ -85,11 +87,13 @@ img.sideBar-navTools {
     padding: 0 48px;
     gap: 13.66px;
   }
+
   .sideBar-DashBoardContainer {
     width: 6rem;
     display: grid;
     justify-content: center;
   }
+
   .studentList-container {
     left: 0 !important;
     position: absolute !important;
@@ -100,13 +104,16 @@ img.sideBar-navTools {
   .sideBar-imageContainer {
     padding: 0.7rem 0rem 0rem 0rem;
   }
+
   .sideBarImg {
     width: 13rem;
   }
+
   .main-board {
     left: 0 !important;
     border-radius: 0 !important;
   }
+
   .sideBar-Text {
     display: none;
   }
@@ -116,6 +123,7 @@ img.sideBar-navTools {
     width: 6rem;
     border-radius: 15px;
   }
+
   .studentList-container {
     overflow: auto !important;
   }

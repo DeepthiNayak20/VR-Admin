@@ -16,7 +16,7 @@ const SideBar = () => {
         </div>
 
         <div className="sideBar-dashBoard">
-          <NavLink to="mainBoard" className="sideBar-linkNames">
+          <NavLink to="" className="sideBar-linkNames">
             <div className="sideBar-DashBoardContainer">
               <div className="sideBar-Item">
                 <img
@@ -65,7 +65,6 @@ const SideBar = () => {
             </div>
           </NavLink>
         </div>
-        
       </div>
     </div>
   )

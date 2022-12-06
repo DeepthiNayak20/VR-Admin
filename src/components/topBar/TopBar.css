@@ -20,6 +20,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem 1.7rem 3rem;
+  background: white;
 }
 
 .topBar-headerIcons {
@@ -66,35 +67,17 @@ img.topBar-profileIcon {
   background-color: red;
 }
 
-/* modal */
-/* .topbar-modalContainer {
-    background-color: #0000002b;
-    position: fixed;
-    top: 0rem;
-    height: 100vh;
-    width: 100vw;
-    left: 0;
-}
-
-.topbarOverlay {
-    display: flex;
-    flex-direction: column;
-    width: 19rem;
-    background: var(--primaryClr);
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 1rem;
-    color: white;
-    font-family: ProximaNovaSoft-Regular;
+/* ::-webkit-scrollbar {
+  display: none;
 } */
+
+
 
 img.topbar-closeImg {
   width: 23px;
 }
 
-.EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+.EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
   width: 30% !important;
 }
 
@@ -124,6 +107,7 @@ img.topbar-closeImg {
     background: white !important;
     justify-content: flex-end !important;
   }
+
   .topBar-addCourse {
     display: none;
   }
@@ -132,19 +116,19 @@ img.topbar-closeImg {
     gap: 2rem;
   }
 
-  .EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+  .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
     width: 40% !important;
   }
 }
 
 @media only screen and (max-width: 1193px) {
-  .EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+  .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
     width: 40% !important;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  .EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+  .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
     width: 100% !important;
   }
 

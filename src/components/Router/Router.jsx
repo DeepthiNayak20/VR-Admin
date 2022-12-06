@@ -16,6 +16,7 @@ import ChangePassword from '../profileDrawer/changePassword/ChangePassword'
 import EditProfile from '../profileDrawer/editProfile/EditProfile'
 import Profile from '../profileDrawer/profile/Profile'
 import StudentList from '../studentList/StudentList'
+import ViewAll from '../viewAllHomePage/ViewAll'
 
 const Router = () => {
   return (
@@ -28,7 +29,8 @@ const Router = () => {
           <Route path="newPassword" element={<NewPassword />} />
         </Route>
         <Route path="/dashBoard" element={<DashBoard />}>
-          <Route path="mainBoard" element={<MainBoard />} />
+          <Route path="" element={<MainBoard />}></Route>
+          <Route path="viewAll" element={<ViewAll />} />
           <Route path="addCourses" element={<AddCourse />}>
             <Route path="upload" element={<Upload />} />
             <Route path="QandA" element={<QandA />} />
