@@ -7,7 +7,15 @@ const RichTextEditor = () => {
   return (
     <div>
       <div className="richText-container">
-        <CKEditor editor={ClassicEditor} />
+        <CKEditor
+          editor={ClassicEditor}
+          data={text}
+          onChange={(event, editor) => {
+            const data = editor.getData()
+            setText(data)
+          }}
+          style={{ width: '100px' }}
+        />
       </div>
     </div>
   )

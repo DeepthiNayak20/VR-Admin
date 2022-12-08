@@ -1,7 +1,6 @@
 import './StudentListComponent.css'
 
 import * as React from 'react'
-
 import PropTypes from 'prop-types'
 import { alpha } from '@mui/material/styles'
 import Box from '@mui/material/Box'
@@ -19,11 +18,120 @@ import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-import FormControlLabel from '@mui/material/FormControlLabel'
+// import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch'
 import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
+// import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils'
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore'
+import { Avatar, Grid, makeStyles, styled } from '@mui/material'
+// import { padding } from '@mui/system';
+
+// const useStyles =makeStyles((theme)=>({
+//   spacing:{
+
+//   }
+// }))
+// const StyledTableCell = styled(TableCell)({
+//   padding: 0,
+// })
+const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+  width: 62,
+  height: 34,
+  padding: 7,
+  '& .MuiSwitch-switchBase': {
+    margin: 1,
+    padding: 0,
+    transform: 'translateX(6px)',
+    '&.Mui-checked': {
+      color: '#fff',
+      transform: 'translateX(22px)',
+      '& .MuiSwitch-thumb:before': {
+        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+          '#fff',
+        )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+      },
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+      },
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+    width: 32,
+    height: 32,
+    '&:before': {
+      content: "''",
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      left: 0,
+      top: 0,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+        '#fff',
+      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+    },
+  },
+  '& .MuiSwitch-track': {
+    opacity: 1,
+    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+    borderRadius: 20 / 2,
+  },
+}))
+
+const IOSSwitch = styled((props) => (
+  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+  width: 38,
+  height: 24,
+  padding: 0,
+  '& .MuiSwitch-switchBase': {
+    padding: 0,
+    margin: 2,
+    transitionDuration: '300ms',
+    '&.Mui-checked': {
+      transform: 'translateX(16px)',
+      color: '#0047FF',
+      '& + .MuiSwitch-track': {
+        backgroundColor: theme.palette.mode === 'dark' ? '#E9E9EA' : '#E9E9EA',
+        opacity: 1,
+        border: 0,
+      },
+      '&.Mui-disabled + .MuiSwitch-track': {
+        opacity: 0.5,
+      },
+    },
+    '&.Mui-focusVisible .MuiSwitch-thumb': {
+      color: '#fff',
+      border: '6px solid #0047FF',
+    },
+    '&.Mui-disabled .MuiSwitch-thumb': {
+      color:
+        theme.palette.mode === 'light'
+          ? theme.palette.grey[100]
+          : theme.palette.grey[600],
+    },
+    '&.Mui-disabled + .MuiSwitch-track': {
+      opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    boxSizing: 'border-box',
+    width: 20,
+    height: 20,
+  },
+  '& .MuiSwitch-track': {
+    borderRadius: 26 / 2,
+    backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+    opacity: 1,
+    transition: theme.transitions.create(['background-color'], {
+      duration: 500,
+    }),
+  },
+}))
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -90,27 +198,33 @@ const headCells = [
   },
   {
     id: 'calories',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Joined Date',
   },
   {
     id: 'fat',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Course title',
   },
   {
     id: 'carbs',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Completed Date',
   },
   {
     id: 'protein',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Status',
+  },
+  {
+    id: 'proteins',
+    numeric: false,
+    disablePadding: false,
+    label: 'Subscribe',
   },
 ]
 
@@ -139,27 +253,42 @@ function EnhancedTableHead(props) {
             inputProps={{
               'aria-label': 'select all desserts',
             }}
-            sx={{}}
           />
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            padding="normal"
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{
+              p: '11px',
+            }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+              IconComponent={UnfoldMoreIcon}
+              // hideSortIcon='false'
             >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
+              <Typography
+                fontFamily="ProximaNovaSoft-Regular"
+                fontWeight="light"
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <Box component="span" sx={visuallyHidden}>
+                    {order === 'desc'
+                      ? 'sorted descending'
+                      : 'sorted ascending'}
+                  </Box>
+                ) : null}
+              </Typography>
             </TableSortLabel>
           </TableCell>
         ))}
@@ -349,12 +478,36 @@ export default function EnhancedTable() {
                           component="th"
                           id={labelId}
                           scope="row"
-                          padding="1px"
                           sx={{
                             width: '20%',
+                            p: '5px',
                           }}
                         >
-                          {row.name}
+                          <Grid container>
+                            <Grid item lg={2}>
+                              <Avatar
+                                alt={row.name}
+                                src="."
+                                sx={{
+                                  width: 30,
+                                  height: 30,
+                                  ml: '3px',
+                                }}
+                              />
+                            </Grid>
+                            <Grid item lg={10}>
+                              <Typography
+                                fontFamily="ProximaNovaSoft-Regular"
+                                fontWeight="bold"
+                                sx={{
+                                  ml: '2px',
+                                  pt: '3px',
+                                }}
+                              >
+                                {row.name}
+                              </Typography>
+                            </Grid>
+                          </Grid>
                         </TableCell>
                         <TableCell
                           align="left"
@@ -362,39 +515,49 @@ export default function EnhancedTable() {
                             width: '13%',
                           }}
                         >
-                          {row.calories}
+                          <Typography fontFamily="ProximaNovaSoft-Regular">
+                            {row.calories}{' '}
+                          </Typography>
                         </TableCell>
                         <TableCell
-                          align="right"
+                          align="left"
                           sx={{
                             width: '35%',
                           }}
                         >
-                          {row.fat}
+                          <Typography fontFamily="ProximaNovaSoft-Regular">
+                            {row.fat}
+                          </Typography>
                         </TableCell>
                         <TableCell
-                          align="right"
+                          align="left"
                           sx={{
                             width: '13%',
                           }}
                         >
-                          {row.carbs}
+                          <Typography fontFamily="ProximaNovaSoft-Regular">
+                            {row.carbs}
+                          </Typography>
                         </TableCell>
                         <TableCell
-                          align="right"
+                          align="center"
                           sx={{
                             width: '9%',
                           }}
                         >
-                          {row.protein}
+                          <Typography fontFamily="ProximaNovaSoft-Regular">
+                            {row.protein}
+                          </Typography>
                         </TableCell>
                         <TableCell
-                          align="right"
+                          align="center"
                           sx={{
                             width: '8%',
                           }}
                         >
-                          {row.protein}
+                          <Typography fontFamily="ProximaNovaSoft-Regular">
+                            <IOSSwitch sx={{ m: 1 }} defaultChecked />
+                          </Typography>
                         </TableCell>
                       </TableRow>
                     )
@@ -412,7 +575,7 @@ export default function EnhancedTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 15, 25]}
+            rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}

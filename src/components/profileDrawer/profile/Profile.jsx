@@ -1,11 +1,10 @@
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+
 import { showProfileFn } from '../../../redux/showProfile'
 
 import './Profile.css'
 
 const Profile = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   return (
     <div>

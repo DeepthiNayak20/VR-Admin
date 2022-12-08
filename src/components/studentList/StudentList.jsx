@@ -1,5 +1,5 @@
 import EnhancedTable from '../studentListComponent/StudentListComponent'
-import StudentListComponent from '../studentListComponent/StudentListComponent'
+
 import './StudentList.css'
 
 const StudentList = () => {

@@ -150,9 +150,11 @@ const Upload = () => {
               </Accordion>
             )
           })}
-          <button type="submit" className="QandA-Button">
-            Publish
-          </button>
+          <div className="Upload-buttonPublish">
+            <button type="submit" className="QandA-Button">
+              Publish
+            </button>
+          </div>
         </form>
       </div>
     </div>

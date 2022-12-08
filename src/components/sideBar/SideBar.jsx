@@ -16,7 +16,7 @@ const SideBar = () => {
         </div>
 
         <div className="sideBar-dashBoard">
-          <NavLink to="" className="sideBar-linkNames">
+          <NavLink to="main" className="sideBar-linkNames">
             <div className="sideBar-DashBoardContainer">
               <div className="sideBar-Item">
                 <img

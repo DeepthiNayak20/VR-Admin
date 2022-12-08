@@ -10,7 +10,7 @@ const AdminPassword = () => {
             <div className="admin-label">
               <label className="admin-label">Change Password</label>
               <input
-                type="text"
+                type="password"
                 className="admin-input"
                 placeholder="Placeholder text"
               />
@@ -19,7 +19,7 @@ const AdminPassword = () => {
             <div className="admin-label">
               <label className="admin-label">New Password</label>
               <input
-                type="text"
+                type="password"
                 className="admin-input"
                 placeholder="Placeholder text"
               />
@@ -28,7 +28,7 @@ const AdminPassword = () => {
             <div className="admin-label">
               <label className="admin-label">Confirm Password</label>
               <input
-                type="text"
+                type="password"
                 className="admin-input"
                 placeholder="Placeholder text"
               />

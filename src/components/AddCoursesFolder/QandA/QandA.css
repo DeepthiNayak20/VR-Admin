@@ -30,7 +30,7 @@ button.QandA-button {
   background: transparent;
   border: none;
   outline: none;
-  padding-right: 2rem;
+  padding-right: 10px;
 
 }
 
@@ -157,7 +157,7 @@ input.question-options {
 .QnAChapter {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   background: #ffffff;
   border-radius: 8px;
   padding: 1.5rem;
@@ -193,23 +193,30 @@ select.QandA-select {
 }
 
 button.QandA-Button {
-  position: relative;
+  /* position: relative; */
+  /* display: flex; */
   border: none;
-
-  float: right;
+  /* float: right; */
   background: #ee5c4d;
   border-radius: 6px;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 35px;
-  text-align: center;
+  /* text-align: center; */
   color: #ffffff;
   cursor: pointer;
-  text-align: center;
+  /* text-align: center; */
   color: #ffffff;
   cursor: pointer;
   padding: 6px 61px;
+  /* align-items: flex-start; */
+}
+
+.QandA-buttonSave {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3rem;
 }
 
 @media only screen and (max-width: 500px) {

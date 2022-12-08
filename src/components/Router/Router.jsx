@@ -29,7 +29,7 @@ const Router = () => {
           <Route path="newPassword" element={<NewPassword />} />
         </Route>
         <Route path="/dashBoard" element={<DashBoard />}>
-          <Route path="" element={<MainBoard />}></Route>
+          <Route path="main" element={<MainBoard />}></Route>
           <Route path="viewAll" element={<ViewAll />} />
           <Route path="addCourses" element={<AddCourse />}>
             <Route path="upload" element={<Upload />} />

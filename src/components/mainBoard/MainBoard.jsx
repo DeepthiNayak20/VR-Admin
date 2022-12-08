@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import EnhancedTable from '../studentListComponent/StudentListComponent'
 import './MainBoard.css'
 
@@ -24,9 +24,9 @@ const MainBoard = () => {
         </div>
         <div className="dashboard-recently-added">
           <div className="recent-viewall">
-            <div className="recently">Recently course added</div>
+            <div className="recently">Recently&nbsp;course&nbsp;added</div>
             <div className="viewall">
-              <NavLink to="/Dashboard/viewAll">View all</NavLink>
+              <NavLink to="/Dashboard/viewAll">View&nbsp;all</NavLink>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ const MainBoard = () => {
       <div className="dashboard-blocks">
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
-            <div className="dashboard-block-title">Total Students</div>
+            <div className="dashboard-block-title">Total&nbsp;Students</div>
             <div className="dashboard-block-value">1500</div>
           </div>
           <div className="dashboard-block-img">
@@ -58,9 +58,9 @@ const MainBoard = () => {
             </svg>
           </div>
         </div>
-        <div className="dashboard-block2">
+        <div className="dashboard-block1">
           <div className="dashboard-block-text">
-            <div className="dashboard-block-title">Overall Students</div>
+            <div className="dashboard-block-title">Overall&nbsp;Students</div>
             <div className="dashboard-block-value">78%</div>
           </div>
           <div className="dashboard-block-img">
@@ -84,9 +84,9 @@ const MainBoard = () => {
             </svg>
           </div>
         </div>
-        <div className="dashboard-block3">
+        <div className="dashboard-block1">
           <div className="dashboard-block-text">
-            <div className="dashboard-block-title">Total Course</div>
+            <div className="dashboard-block-title">Total&nbsp;Course</div>
             <div className="dashboard-block-value">150</div>
           </div>
           <div className="dashboard-block-img">

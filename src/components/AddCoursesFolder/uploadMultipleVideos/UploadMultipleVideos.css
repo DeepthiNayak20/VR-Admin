@@ -105,3 +105,22 @@ span.upload-browseColor {
     color: blue;
     text-decoration: underline;
 }
+
+.upload-multipleVideos {
+    background: pink;
+    padding: 1rem;
+    margin: 16px 0px;
+}
+
+@media screen and (max-width: 1033px) {
+    .uploadMultiple-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .uploadMultiple-text {
+        padding-left: 0rem;
+        /* background: #00c4ff6e; */
+    }
+}
