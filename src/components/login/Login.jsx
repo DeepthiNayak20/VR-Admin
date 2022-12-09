@@ -2,9 +2,21 @@ import './Login.css'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
+import { LoginAsyncThunk } from '../../redux/reducers/LoginSlice'
+import { useEffect, useState } from 'react'
 
 const Login = () => {
+  const [response, setResponse] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const loginData = useSelector((state) => state.Login)
+  // console.log('loginData', loginData)
+  // console.log('loginData', loginData)
+  // useEffect(() => {
+  //   console.log('loginData', loginData)
+  // }, [])
 
   const formik = useFormik({
     initialValues: {
@@ -20,17 +32,73 @@ const Login = () => {
     }),
 
     onSubmit: (values) => {
-      console.log(values)
+      // console.log('sads', values)
     },
   })
 
-  console.log(formik.errors)
+  const submitHandler = (e) => {
+    e.preventDefault()
+    setResponse(true)
+    // const userName = formik.values.userName
+    // const password = formik.values.password
+
+    // console.log(formik.values)
+    dispatch(
+      LoginAsyncThunk({
+        userName: formik.values.userName,
+        password: formik.values.password,
+      }),
+      // navigate('/dashBoard'),
+    )
+  }
+
+  const loginSubmitHandler = () => {
+    console.log('loginSubmitHandler', loginData)
+    if (
+      (loginData &&
+        loginData.data &&
+        loginData.data.payload &&
+        loginData.data.payload.status) === 200
+    ) {
+      alert(
+        loginData &&
+          loginData.data &&
+          loginData.data.payload &&
+          loginData.data.payload.data &&
+          loginData.data.payload.data.status,
+      )
+      localStorage.setItem('auth', 'true')
+      navigate('/dashboard')
+    } else if (
+      loginData &&
+      loginData.data &&
+      loginData.data.payload &&
+      loginData.data.payload.error
+    ) {
+      alert(
+        loginData &&
+          loginData.data &&
+          loginData.data.payload &&
+          loginData.data.payload.error,
+      )
+    }
+  }
+  useEffect(() => {
+    response && loginSubmitHandler()
+    console.log('response', response)
+    // console.log('loginData', loginData)
+  }, [response, loginData])
+
+  // console.log(formik.errors)
   return (
     <div>
       <form
         action=""
         className="login-loginContainer"
-        onSubmit={formik.handleSubmit}
+        onSubmitCapture={(e) => {
+          formik.handleSubmit()
+          submitHandler(e)
+        }}
       >
         <input
           type="text"

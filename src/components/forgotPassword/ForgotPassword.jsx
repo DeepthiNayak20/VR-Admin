@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
@@ -19,8 +20,39 @@ const ForgotPassword = () => {
 
     onSubmit: (values) => {
       console.log(values)
+      axios(
+        `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/send`,
+        {
+          method: 'post',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+          },
+          data: { email: values.email },
+        },
+      )
+        .then((res) => {
+          if (res) {
+            alert('data')
+            // alert(res.data)
+            // console.log('res.data', res.data)
+
+            // if (res.status === 200) {
+            // navigate('/login/forgotpassword')
+            //   alert('success')
+            // }
+          }
+        })
+        .catch((err) => {
+          // alert(err && err.response && err.response.data)
+          alert('error')
+        })
     },
   })
+
+  const submitPasswordHandler = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <div>
@@ -31,7 +63,14 @@ const ForgotPassword = () => {
           <br /> a code to create a new password.
         </div>
       </div>
-      <form action="" className="login-loginContainer">
+      <form
+        action=""
+        className="login-loginContainer"
+        onSubmit={(e) => {
+          formik.handleSubmit()
+          submitPasswordHandler(e)
+        }}
+      >
         <input
           type="email"
           id="email"
@@ -51,9 +90,9 @@ const ForgotPassword = () => {
         <button
           type="submit"
           className="otp-verifyButton"
-          onClick={() => {
-            navigate('/otp')
-          }}
+          // onClick={() => {
+          //   navigate('/otp')
+          // }}
         >
           Send
         </button>

@@ -22,8 +22,10 @@
 }
 
 .container {
- padding-left: 13px;
+  padding-left: 13px;
+  padding-bottom: 3rem;
 }
+
 .MuiTypography-root {
   margin-top: 1px !important;
 }

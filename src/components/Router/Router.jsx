@@ -19,6 +19,8 @@ import StudentList from '../studentList/StudentList'
 import ViewAll from '../viewAllHomePage/ViewAll'
 
 const Router = () => {
+  const authicate = localStorage.getItem('auth')
+  console.log('auth', authicate)
   return (
     <div>
       <Routes>
@@ -28,10 +30,17 @@ const Router = () => {
           <Route path="forgotPassword" element={<ForgotPassword />} />
           <Route path="newPassword" element={<NewPassword />} />
         </Route>
+
         <Route path="/dashBoard" element={<DashBoard />}>
+          {/* <Route
+          path="/dashBoard"
+          element={authicate === 'true' ? <DashBoard /> : <Home />}
+        > */}
+          <Route path="" element={<MainBoard />}></Route>
           <Route path="main" element={<MainBoard />}></Route>
           <Route path="viewAll" element={<ViewAll />} />
           <Route path="addCourses" element={<AddCourse />}>
+            <Route path="" element={<Upload />} />
             <Route path="upload" element={<Upload />} />
             <Route path="QandA" element={<QandA />} />
             <Route path="certificate" element={<Certificate />} />

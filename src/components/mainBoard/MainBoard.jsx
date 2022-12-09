@@ -1,26 +1,60 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import EnhancedTable from '../studentListComponent/StudentListComponent'
 import './MainBoard.css'
 
-const date = new Date()
-const today = `${date.toLocaleString('en-us', {
-  weekday: 'short',
-})} ${date.getDate()}, ${date.toLocaleString('en-us', {
-  month: 'short',
-})} ${date.getFullYear()} | ${date.toLocaleString('en-US', {
-  hour: 'numeric',
-  minute: 'numeric',
-  hour12: true,
-})}`
+// const date = new Date()
+// const today = `${date.toLocaleString('en-us', {
+//   weekday: 'short',
+// })} ${date.getDate()}, ${date.toLocaleString('en-us', {
+//   month: 'short',
+// })} ${date.getFullYear()} | ${date.toLocaleString('en-US', {
+//   hour: 'numeric',
+//   minute: 'numeric',
+//   hour12: true,
+// })}`
 
 const MainBoard = () => {
+  const [date, setDate] = useState(new Date())
+
+  const today = () => {
+    setDate(new Date())
+  }
+
+  useEffect(() => {
+    const timerId = setInterval(today, 1000)
+    return function timeChange() {
+      clearInterval(timerId)
+    }
+  }, [])
+
   return (
     <div className="main-board">
       <div className="date-recentcourse">
         <div className="dashboard-date">
           <div className="today">Today</div>
-          <div className="date">{today}</div>
+          {/* <div className="date">{today}</div> */}
+          <div className="date">
+            <span>
+              {' '}
+              {date.toLocaleString('en-us', {
+                weekday: 'short',
+              })}
+              &nbsp;{date.getDate()},{' '}
+              {/* {date.toLocaleString('en-us', {
+              month: 'short',
+            })}{' '} */}
+              {date.getFullYear()}
+              &nbsp;|&nbsp;
+              {date.toLocaleString('en-US', {
+                hour: 'numeric',
+
+                minute: 'numeric',
+
+                hour12: true,
+              })}
+            </span>
+          </div>
         </div>
         <div className="dashboard-recently-added">
           <div className="recent-viewall">

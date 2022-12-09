@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 const AddCourse = () => {
   return (
-    <div className="studentList-container">
+    <div className="studentList-containerAddCourse">
       <div className="addcourse-container">
         <NavLink to="upload" className="addCourse-navLink">
           Video&nbsp;Upload
