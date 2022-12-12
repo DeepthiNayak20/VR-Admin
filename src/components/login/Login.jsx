@@ -140,10 +140,23 @@ const Login = () => {
           >
             Forgot Password ?
           </div>
-          <div className="login-buttonContainer">
-            <button type="submit" className="login-loginButton">
-              Login
-            </button>
+          <div className="button-loginContainer">
+            <div className="login-buttonContainer">
+              <button type="submit" className="login-loginButtonn">
+                Login
+              </button>
+            </div>
+            <div className="login-buttonContainer">
+              <button
+                type="button"
+                className="login-signUpButton"
+                onClick={() => {
+                  navigate('/signUp')
+                }}
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
       </form>

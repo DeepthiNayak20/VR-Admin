@@ -1,4 +1,4 @@
-.main-board {
+.Supermain-board {
   position: absolute;
   z-index: -3;
   left: 288px;
@@ -6,7 +6,7 @@
   border-radius: 2.5em 0 0 0;
   right: 0;
   background-color: #f9f9f9;
-  height: 156vh;
+  height: 100vw;
 }
 
 .studentlist-table-container {
@@ -164,6 +164,19 @@
   height: 488px;
 }
 
+.tableContainer {
+  overflow: auto;
+  margin-bottom: 6rem;
+  padding: 0rem 3rem;
+}
+
+table.tableItem {
+  width: 100%;
+  /* position: relative; */
+  /* left: 1rem; */
+  /* right: 1rem; */
+}
+
 @media screen and (max-width: 1073px) {
   .date-recentcourse {
     display: flex;
@@ -241,6 +254,12 @@
     right: 14px;
     height: 488px;
   }
+
+  .tableContainer {
+    /* overflow: auto; */
+    margin-bottom: 6rem;
+    padding: 0rem 1rem;
+  }
 }
 
 @media screen and (max-width: 509px) {
@@ -249,9 +268,9 @@
   }
 }
 
-@media screen and (max-width: 400px) {
-  .main-board {
+@media screen and (max-width: 823px) {
+  .Supermain-board {
 
-    height: 196vh;
+    height: unset;
   }
 }

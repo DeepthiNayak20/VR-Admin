@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import DashBoard from '../../views/dashBoard/DashBoard'
 import Home from '../../views/home/Home'
+import SuperAdminDashBoard from '../../views/superAdminDashboard/SuperAdminDashBoard'
 import AddCourse from '../addCourse/AddCourse'
 import Certificate from '../AddCoursesFolder/certificate/Certificate'
 import QandA from '../AddCoursesFolder/QandA/QandA'
@@ -15,7 +16,11 @@ import OtpVerification from '../otpVerification/OtpVerification'
 import ChangePassword from '../profileDrawer/changePassword/ChangePassword'
 import EditProfile from '../profileDrawer/editProfile/EditProfile'
 import Profile from '../profileDrawer/profile/Profile'
+import SignUp from '../signUp/SignUp'
 import StudentList from '../studentList/StudentList'
+
+import SupermainBoard from '../superAdmin/SupermainBoard/SupermainBoard'
+import SuperRequests from '../superAdmin/SuperRequests/SuperRequests'
 import ViewAll from '../viewAllHomePage/ViewAll'
 
 const Router = () => {
@@ -26,16 +31,21 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="" element={<Login />} />
+          <Route path="signUp" element={<SignUp />} />
           <Route path="otp" element={<OtpVerification />} />
           <Route path="forgotPassword" element={<ForgotPassword />} />
           <Route path="newPassword" element={<NewPassword />} />
         </Route>
 
+        {/* SuperAdminDashboard */}
+        <Route path="/superAdminDashBoard" element={<SuperAdminDashBoard />}>
+          <Route path="" element={<SupermainBoard />}></Route>
+          <Route path="SupermainBoard" element={<SupermainBoard />}></Route>
+          <Route path="SuperRequests" element={<SuperRequests />} />
+        </Route>
+
+        {/* dashBoard */}
         <Route path="/dashBoard" element={<DashBoard />}>
-          {/* <Route
-          path="/dashBoard"
-          element={authicate === 'true' ? <DashBoard /> : <Home />}
-        > */}
           <Route path="" element={<MainBoard />}></Route>
           <Route path="main" element={<MainBoard />}></Route>
           <Route path="viewAll" element={<ViewAll />} />

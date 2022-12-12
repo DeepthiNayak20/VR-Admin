@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import EnhancedTable from '../studentListComponent/StudentListComponent'
-import './MainBoard.css'
 
-const MainBoard = () => {
+import './SupermainBoard.css'
+import React from 'react'
+
+const SupermainBoard = () => {
   const [date, setDate] = useState(new Date())
 
   const today = () => {
@@ -41,19 +42,11 @@ const MainBoard = () => {
             </span>
           </div>
         </div>
-        <div className="dashboard-recently-added">
-          <div className="recent-viewall">
-            <div className="recently">Recently&nbsp;course&nbsp;added</div>
-            <div className="viewall">
-              <NavLink to="/Dashboard/viewAll">View&nbsp;all</NavLink>
-            </div>
-          </div>
-        </div>
       </div>
       <div className="dashboard-blocks">
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
-            <div className="dashboard-block-title">Total&nbsp;Students</div>
+            <div className="dashboard-block-title">Total&nbsp;Admins</div>
             <div className="dashboard-block-value">1500</div>
           </div>
           <div className="dashboard-block-img">
@@ -134,11 +127,37 @@ const MainBoard = () => {
           </div>
         </div>
       </div>
-      <div className="dashboard-table">
-        <EnhancedTable />
+      <div className="tableContainer">
+        {' '}
+        <table className="tableItem">
+          <tr className="tableTr">
+            <th></th>
+            <th>Name</th>
+            <th>Email&nbsp;Id</th>
+            <th>Mobile&nbsp;No</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Smith</td>
+            <td>50</td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jackson</td>
+            <td>94</td>
+            <td>94</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Johnson</td>
+            <td>67</td>
+            <td>67</td>
+          </tr>
+        </table>
       </div>
     </div>
   )
 }
 
-export default MainBoard
+export default SupermainBoard
