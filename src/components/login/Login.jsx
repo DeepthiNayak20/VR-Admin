@@ -25,9 +25,7 @@ const Login = () => {
     },
 
     validationSchema: Yup.object({
-      userName: Yup.string()
-        .max(15, 'Must be 15 charecters or less')
-        .required('Required*'),
+      userName: Yup.string().required('Required*'),
       password: Yup.string().required('Required*'),
     }),
 
@@ -39,10 +37,7 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault()
     setResponse(true)
-    // const userName = formik.values.userName
-    // const password = formik.values.password
 
-    // console.log(formik.values)
     dispatch(
       LoginAsyncThunk({
         userName: formik.values.userName,
@@ -58,7 +53,12 @@ const Login = () => {
       (loginData &&
         loginData.data &&
         loginData.data.payload &&
-        loginData.data.payload.status) === 200
+        loginData.data.payload.status) === 200 &&
+      (loginData &&
+        loginData.data &&
+        loginData.data.payload &&
+        loginData.data.payload.data &&
+        loginData.data.payload.data.role) === '[ROLE_SUPER_ADMIN]'
     ) {
       alert(
         loginData &&
@@ -68,7 +68,7 @@ const Login = () => {
           loginData.data.payload.data.status,
       )
       localStorage.setItem('auth', 'true')
-      navigate('/dashboard')
+      navigate('/superAdminDashBoard')
     } else if (
       loginData &&
       loginData.data &&
@@ -86,7 +86,7 @@ const Login = () => {
   useEffect(() => {
     response && loginSubmitHandler()
     console.log('response', response)
-    // console.log('loginData', loginData)
+    console.log('loginData', loginData)
   }, [response, loginData])
 
   // console.log(formik.errors)

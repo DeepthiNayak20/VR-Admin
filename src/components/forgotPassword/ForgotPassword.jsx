@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { storeEmailForgot } from '../../redux/reducers/EmailSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -19,7 +22,8 @@ const ForgotPassword = () => {
     }),
 
     onSubmit: (values) => {
-      console.log(values)
+      console.log('values', values.email)
+
       axios(
         `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/send`,
         {
@@ -28,24 +32,22 @@ const ForgotPassword = () => {
             Accept: 'application/json, text/plain, */*',
             'Content-Type': 'application/json',
           },
-          data: { email: values.email },
+          data: { emailId: values.email },
         },
       )
         .then((res) => {
           if (res) {
-            alert('data')
-            // alert(res.data)
-            // console.log('res.data', res.data)
-
-            // if (res.status === 200) {
-            // navigate('/login/forgotpassword')
-            //   alert('success')
-            // }
+            console.log('res', res)
+            if (res.status === 200) {
+              alert(res && res.data.message)
+              navigate('/otp')
+              dispatch(storeEmailForgot(values.email))
+            }
           }
         })
         .catch((err) => {
           // alert(err && err.response && err.response.data)
-          alert('error')
+          alert('invalid credentials')
         })
     },
   })

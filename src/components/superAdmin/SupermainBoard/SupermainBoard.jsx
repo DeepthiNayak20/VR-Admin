@@ -19,7 +19,7 @@ const SupermainBoard = () => {
   }, [])
 
   return (
-    <div className="main-board">
+    <div className="Supermain-board">
       <div className="date-recentcourse">
         <div className="dashboard-date">
           <div className="today">Today</div>

@@ -1,7 +1,7 @@
 .signUp-container {
   /* background: red; */
   height: 27rem;
-  /* overflow: auto; */
+  overflow: auto;
 }
 
 .signUp-input {
@@ -23,6 +23,14 @@
   transform: translate(0, -5.8rem);
   font-family: AvenirLTStd-Book;
   letter-spacing: 0.5px;
+}
+.error-msg {
+  color: red;
+  margin-top: -15px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  font-family: 'AvenirLTStd-Book';
 }
 
 @media screen and (max-width: 400px) {

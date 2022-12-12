@@ -14,9 +14,8 @@ export const LoginAsyncThunk = createAsyncThunk(
     console.log('arg', arg)
     try {
       const fetchedData = await axios({
-        method: 'post',
-        // url: `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/login`,
-        url: `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com//admin/login`,
+        method: 'put',
+        url: `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/login`,
         data: {
           userName: arg.userName,
           password: arg.password,
@@ -51,15 +50,6 @@ export const LoginSlice = createSlice({
       state.data = action
     })
   },
-  // extraReducers: {
-  //   [LoginAsyncThunk.pending]: (state, action) => {
-  //     console.log('fetching Data...')
-  //   },
-  //   [LoginAsyncThunk.fulfilled]: (state, action) => {
-  //     console.log('fetched Data Successfully')
-  //     return action.payload.fetchedData
-  //   },
-  // },
 })
 
 // Action creators are generated for each case reducer function
