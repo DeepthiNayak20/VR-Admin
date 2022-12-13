@@ -10,6 +10,7 @@ const RichTextEditor = () => {
         <CKEditor
           editor={ClassicEditor}
           data={text}
+          name="description"
           onChange={(event, editor) => {
             const data = editor.getData()
             setText(data)

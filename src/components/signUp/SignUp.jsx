@@ -6,15 +6,13 @@ import { useDispatch } from 'react-redux'
 import { storePass } from '../../redux/reducers/regDetailSlice'
 
 const SignUp = () => {
-
-
   const formik = useFormik({
     initialValues: {
       userName: '',
       email: '',
       mobileNo: '',
       designation: '',
-      profilePhoto: "",
+      profilePhoto: '',
       url: '',
       description: '',
     },
@@ -33,34 +31,33 @@ const SignUp = () => {
         .integer("A phone number can't include a decimal point")
         .min(8)
         .required('Please enter your mobile Number'),
-      url: Yup.string()
-        .matches(
-          /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-          'Enter correct url!'
-        )
+      url: Yup.string().matches(
+        /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        'Enter correct url!',
+      ),
     }),
 
     onSubmit: (values) => {
-      console.log(values)
+      console.log('Sign up values', values)
       // dispatch(storePass(values));
-    fetch(
+      fetch(
         `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/register`,
         {
-          method: "post",
+          method: 'post',
           headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             emailId: values.email,
             fullName: values.userName,
-            profilePhoto: "",
+            profilePhoto: '',
             mobileNumber: values.mobileNo,
             designation: values.designation,
             description: values.description,
-            url: values.url
+            url: values.url,
           }),
-        }
+        },
       )
         .then((res) => {
           // if (res) {
@@ -71,31 +68,31 @@ const SignUp = () => {
           //     alert("Your details are successfully Registered.")
           //   }
           // }
-          console.log(res)
+          console.log('result', res)
         })
         .catch((err) => {
-          alert("error");
-          console.log(err)
-        });
-
+          alert('error')
+          console.log('error', err)
+        })
     },
   })
   const dispatch = useDispatch
   const submitHandler = (e) => {
-    e.preventDefault();
-
-
-
-  };
+    e.preventDefault()
+  }
 
   return (
     <div>
       {' '}
       <div>
-        <form action="" className="login-loginContainer" onSubmit={(e) => {
-          formik.handleSubmit();
-          submitHandler(e);
-        }}>
+        <form
+          action=""
+          className="login-loginContainer"
+          onSubmit={(e) => {
+            formik.handleSubmit()
+            submitHandler(e)
+          }}
+        >
           <div className="signUp-container">
             {/* name */}
             <input
@@ -152,7 +149,6 @@ const SignUp = () => {
               placeholder=" "
               className="login-input"
               value={formik.values.profilePhoto}
-
             />
             {/* designation */}
             <input
@@ -171,7 +167,6 @@ const SignUp = () => {
             {formik.errors.designation && formik.touched.designation ? (
               <p className="error-msg">{formik.errors.designation}</p>
             ) : null}
-
 
             <input
               type="text"

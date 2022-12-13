@@ -23,7 +23,9 @@
 
 .container {
   padding-left: 13px;
-  padding-bottom: 3rem;
+  padding-bottom: 0rem;
+  max-width: 100%;
+  padding-top: 15px;
 }
 
 .MuiTypography-root {

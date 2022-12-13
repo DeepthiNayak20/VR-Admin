@@ -37,7 +37,7 @@ const ForgotPassword = () => {
       )
         .then((res) => {
           if (res) {
-            console.log('res', res)
+            console.log('forgot password res', res)
             if (res.status === 200) {
               alert(res && res.data.message)
               navigate('/otp')

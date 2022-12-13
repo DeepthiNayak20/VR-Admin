@@ -10,6 +10,7 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css'
 import UploadMultipleVideos from '../uploadMultipleVideos/UploadMultipleVideos'
 import RichTextEditor from '../richTextEditor/RichTextEditor'
+import OtherTextArea from '../otherTextArea/OtherTextArea'
 
 const Upload = () => {
   const [counterVideo, setCounterVideo] = useState(0)
@@ -22,37 +23,64 @@ const Upload = () => {
   return (
     <div>
       <div className="upload-container">
-        {/* <div className="upload-addNewButton">
-          {' '}
-          <button
-            className="QandA-addNewBtn"
-            onClick={() => {
-              addVideoHandler()
-            }}
-          >
-            Add&nbsp;New&nbsp;+
-          </button>
-        </div> */}
         <form action="" className="upload-formController">
           <div className="upload-videoCategory">
             <div>
               {' '}
               <div className="upload-title">Video&nbsp;Title</div>
-              <input
-                type="text"
-                name="Title"
-                placeholder="Video Title"
-                className="upload-inputField title"
-              />
+              <div className="upload-videoTitleee">
+                <input
+                  type="text"
+                  name="videoTitle"
+                  placeholder="Video Title"
+                  className="upload-inputField title"
+                />
+              </div>
             </div>
+            <div className="upload-videoSubCategory">
+              <div className="upload-dropDown">
+                <div className="upload-title">Video&nbsp;Category</div>
+                <div className="upload-videoTitle">
+                  <select name="videoCategory" className="upload-select">
+                    <option
+                      value="Setting up a new project"
+                      className="QandA-option"
+                    >
+                      Setting up a new project
+                    </option>
+                    <option value="ReactJS"> ReactJS</option>
+                    <option value="Web design">Web design</option>
+                  </select>
+                </div>
+              </div>
+              <div className="upload-dropDown">
+                <div className="upload-title">Video&nbsp;Sub&nbsp;Category</div>
+                <div className="upload-videoTitle">
+                  <select name="videoSubCategory" className="upload-select">
+                    <option
+                      value="Setting up a new project"
+                      className="QandA-option"
+                    >
+                      Setting up a new project
+                    </option>
+                    <option value="ReactJS"> ReactJS</option>
+                    <option value="Web design">Web design</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* tagline */}
+          <div className="upload-tagline">
             <div>
-              <div className="upload-title">Video&nbsp;Category</div>
-              <input
-                type="text"
-                name="Category"
-                placeholder="Video Category"
-                className="upload-inputField category"
-              />
+              {' '}
+              <div className="upload-title">Video&nbsp;Tagline</div>
+              <div className="textarea-tagline">
+                <textarea
+                  name="tagline"
+                  className="upload-inputField tagline"
+                ></textarea>
+              </div>
             </div>
           </div>
           {/* discription overview */}
@@ -62,6 +90,9 @@ const Upload = () => {
             </div>
             <div className="uplaod-discriptionArea">
               <RichTextEditor />
+            </div>
+            <div className="uplaod-TextArea">
+              <OtherTextArea />
             </div>
           </div>
           {/* add videos */}
@@ -99,10 +130,11 @@ const Upload = () => {
                             <div className="upload-head">
                               <input
                                 type="text"
-                                placeholder="Question"
+                                placeholder="Chapter Name"
                                 className="upload-inputText"
+                                name="chapterName"
                               />
-                              {!uploadSuccessful ? (
+                              {uploadSuccessful ? (
                                 <div className="upload-uploadStatus upload-successfully">
                                   <svg
                                     width="20"

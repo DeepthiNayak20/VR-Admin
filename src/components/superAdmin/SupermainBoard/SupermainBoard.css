@@ -52,20 +52,7 @@
   color: #292929;
 }
 
-.dashboard-recently-added {
-  position: relative;
-  margin-right: 80px;
-  display: flex;
-  flex-direction: column;
-  padding: 17px 23px;
-  gap: 9.1px;
-  width: 28rem;
-  height: 7em;
-  top: 16.42px;
-  background-color: #ffffff;
-  box-shadow: 0px 16px 31px rgb(0 0 0 / 1%);
-  border-radius: 2em;
-}
+
 
 .recent-viewall {
   position: relative;
