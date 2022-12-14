@@ -114,6 +114,7 @@ const QandA = () => {
                               className="question-options"
                               placeholder="Option 1"
                             />
+
                             <ToggleSwitch
                               label="option1"
                               index={index}
@@ -126,6 +127,7 @@ const QandA = () => {
                               className="question-options"
                               placeholder="Option 2"
                             />
+
                             <ToggleSwitch
                               label="option2"
                               index={index}
@@ -138,6 +140,7 @@ const QandA = () => {
                               className="question-options"
                               placeholder="Option 3"
                             />
+
                             <ToggleSwitch
                               label="option3"
                               index={index}
@@ -150,6 +153,7 @@ const QandA = () => {
                               className="question-options"
                               placeholder="Option 4"
                             />
+
                             <ToggleSwitch
                               label="option4"
                               index={index}

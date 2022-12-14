@@ -84,9 +84,9 @@
   /* background: #00800045; */
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-column-gap: 1rem;
+  grid-column-gap: 2rem;
   position: relative;
-  margin: 1rem 2rem 2rem 2rem;
+  margin: 1rem 2rem 3rem 2rem;
 }
 
 .dashboard-block1 {
@@ -148,7 +148,7 @@
   border-radius: 10px;
   overflow: auto;
   right: 28px;
-  height: 488px;
+  height: 418px;
 }
 
 .tableContainer {
@@ -259,5 +259,14 @@ table.tableItem {
   .Supermain-board {
 
     height: unset;
+  }
+}
+
+@media screen and (max-width: 855px) {
+  .Supermain-board {
+
+    left: 0;
+    border-radius: 0;
+
   }
 }

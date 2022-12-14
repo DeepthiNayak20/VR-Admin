@@ -4,8 +4,11 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { storePass } from '../../redux/reducers/regDetailSlice'
+// import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
+  const dispatch = useDispatch()
+  // const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       userName: '',
@@ -38,45 +41,44 @@ const SignUp = () => {
     }),
 
     onSubmit: (values) => {
-      console.log('Sign up values', values)
-      // dispatch(storePass(values));
-      fetch(
-        `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/register`,
-        {
-          method: 'post',
-          headers: {
-            Accept: 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            emailId: values.email,
-            fullName: values.userName,
-            profilePhoto: '',
-            mobileNumber: values.mobileNo,
-            designation: values.designation,
-            description: values.description,
-            url: values.url,
-          }),
-        },
-      )
-        .then((res) => {
-          // if (res) {
-          //   alert("data");
+      console.log('sign up', values)
 
-          //   if (res.status === 200) {
-          //     // navigate("/signup/verifyotp");
-          //     alert("Your details are successfully Registered.")
-          //   }
-          // }
-          console.log('result', res)
+      axios
+        .request(
+          `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/register`,
+          {
+            method: 'post',
+            headers: {
+              Accept: '*/*',
+              'Content-Type': 'application/json',
+            },
+            data: {
+              emailId: values.email,
+              fullName: values.userName,
+              mobileNumber: values.mobileNo,
+              designation: values.designation,
+              description: values.description,
+              url: values.url,
+            },
+          },
+        )
+
+        .then((res) => {
+          if (res.status === 200) {
+            // navigate('/')
+            alert(res.data.message)
+          }
+
+          console.log(res)
         })
+
         .catch((err) => {
           alert('error')
-          console.log('error', err)
+          console.log(err)
         })
     },
   })
-  const dispatch = useDispatch
+
   const submitHandler = (e) => {
     e.preventDefault()
   }
@@ -88,6 +90,7 @@ const SignUp = () => {
         <form
           action=""
           className="login-loginContainer"
+          id="regForm"
           onSubmit={(e) => {
             formik.handleSubmit()
             submitHandler(e)

@@ -1,3 +1,8 @@
+// {
+//   "userName"  :   "akjeelan22@gmail.com",
+//   "password"  :   "Jeelan@123"
+// }
+
 import './Login.css'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
@@ -67,8 +72,28 @@ const Login = () => {
           loginData.data.payload.data &&
           loginData.data.payload.data.status,
       )
-      localStorage.setItem('auth', 'true')
+      localStorage.setItem('superAdmin', 'true')
       navigate('/superAdminDashBoard')
+    } else if (
+      (loginData &&
+        loginData.data &&
+        loginData.data.payload &&
+        loginData.data.payload.status) === 200 &&
+      (loginData &&
+        loginData.data &&
+        loginData.data.payload &&
+        loginData.data.payload.data &&
+        loginData.data.payload.data.role) === '[ROLE_ADMIN]'
+    ) {
+      alert(
+        loginData &&
+          loginData.data &&
+          loginData.data.payload &&
+          loginData.data.payload.data &&
+          loginData.data.payload.data.status,
+      )
+      localStorage.setItem('admin', 'true')
+      navigate('/dashBoard')
     } else if (
       loginData &&
       loginData.data &&

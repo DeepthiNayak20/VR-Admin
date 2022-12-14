@@ -22,27 +22,6 @@ const UploadMultipleVideos = () => {
     <div>
       <div className="uploadMultiple-container">
         <div className="uploadMultiple-videos">
-          {/* <div className="uploadMultiple-videosContainer">
-            {' '}
-            <input
-              id="fileUpload"
-              type="file"
-              multiple
-              accept="video/mp4,video/x-m4v,video/*"
-              className="uploadMultipleVideos-input"
-              onChange={(e) => {
-                handleFileEvent(e)
-              }}
-            />
-            <label htmlFor="fileUpload">
-              <div className="uploadVideos-btn"> Upload Files </div>
-            </label>
-          </div> */}
-          {/* <div className="uploaded-files-list">
-            {uploadedFiles.map((file) => (
-              <div>{file.name}</div>
-            ))}
-          </div> */}
           <VideoInput width={400} height={300} />
         </div>
 

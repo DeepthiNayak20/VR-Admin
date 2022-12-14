@@ -25,7 +25,7 @@ const ForgotPassword = () => {
       console.log('values', values.email)
 
       axios(
-        `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/send`,
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/send`,
         {
           method: 'post',
           headers: {
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
       )
         .then((res) => {
           if (res) {
-            console.log('forgot password res', res)
+            console.log('res', res)
             if (res.status === 200) {
               alert(res && res.data.message)
               navigate('/otp')

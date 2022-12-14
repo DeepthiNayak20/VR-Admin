@@ -1,7 +1,10 @@
+import axios from 'axios'
 import { useFormik } from 'formik'
+import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
 
 const NewPassword = () => {
+  const EmailIdEntered = useSelector((state) => state.emailSend.emailId)
   const formik = useFormik({
     initialValues: {
       Npassword: '',
@@ -21,9 +24,37 @@ const NewPassword = () => {
     }),
 
     onSubmit: (values) => {
-      console.log(values)
+      console.log('new password', values)
+      axios(
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/verify`,
+        {
+          method: 'put',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+          },
+          data: {
+            emailId: EmailIdEntered,
+            password: values.Npassword,
+          },
+        },
+      )
+        .then((res) => {
+          if (res) {
+            alert('valid otp')
+            // alert(res.data)
+            console.log('res.dataotp', res)
+          }
+        })
+        .catch((err) => {
+          // alert(err.response.data)
+          alert('error')
+        })
     },
   })
+  const newPAsswordSubmit = (e) => {
+    e.preventDefault()
+  }
   return (
     <div>
       <div className="otpVerifivation-container">
@@ -33,10 +64,14 @@ const NewPassword = () => {
           <br /> 6 or more characters
         </div>
       </div>
+
       <form
         action=""
         className="login-loginContainer"
-        onSubmit={formik.handleSubmit}
+        onSubmit={(e) => {
+          formik.handleSubmit()
+          newPAsswordSubmit(e)
+        }}
       >
         <input
           type="password"

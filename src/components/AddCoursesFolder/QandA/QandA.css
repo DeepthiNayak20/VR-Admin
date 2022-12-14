@@ -62,7 +62,7 @@ button.QandA-button {
   font-family: ProximaNovaSoft-Regular;
 }
 
-.accordion__item + .accordion__item {
+.accordion__item+.accordion__item {
   border-top: none !important;
 }
 

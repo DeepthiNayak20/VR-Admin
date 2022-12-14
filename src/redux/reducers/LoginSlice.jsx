@@ -15,7 +15,7 @@ export const LoginAsyncThunk = createAsyncThunk(
     try {
       const fetchedData = await axios({
         method: 'put',
-        url: `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/login`,
+        url: `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/login`,
         data: {
           userName: arg.userName,
           password: arg.password,

@@ -18,7 +18,7 @@ const OtpVerification = () => {
     console.log('otp', otp)
 
     axios(
-      `http://admin-env.eba-mh8pph25.ap-south-1.elasticbeanstalk.com/admin/verify`,
+      `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/verify`,
       {
         method: 'post',
         headers: {
@@ -33,9 +33,9 @@ const OtpVerification = () => {
     )
       .then((res) => {
         if (res) {
-          alert('data')
+          alert('valid otp')
           // alert(res.data)
-          // console.log('res.dataotp', res.data)
+          console.log('res.dataotp', res)
 
           if (res.status === 200) {
             navigate('/newPassword')
@@ -46,10 +46,39 @@ const OtpVerification = () => {
         // alert(err.response.data)
         alert('error')
       })
+  }
 
-    // const otp = e.target.otp.value
-    // console.log(JSON.stringify(e.target.OTP.value))
-    // console.log('otp', e.target.otp.value)
+  const resendOtp = (e) => {
+    e.preventDefault()
+    console.log('resend', EmailIdEntered)
+    axios(
+      `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/resend`,
+      {
+        method: 'post',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        data: {
+          emailId: EmailIdEntered,
+        },
+      },
+    )
+      .then((res) => {
+        if (res) {
+          // alert('otp sent')
+          alert(res.data.message)
+          console.log('sent otp message', res.data)
+
+          // if (res.status === 200) {
+          // }
+        }
+      })
+      .catch((err) => {
+        // alert(err.response.data)
+        alert('error')
+        console.log('otp verification error', err)
+      })
   }
 
   return (
@@ -89,7 +118,15 @@ const OtpVerification = () => {
           />
         </div>
         <div className="otp-resendCode">
-          Didn’t receive a code? <span className="otp-resend">Resend</span>
+          Didn’t receive a code?{' '}
+          <span
+            className="otp-resend"
+            onClick={(e) => {
+              resendOtp(e)
+            }}
+          >
+            Resend
+          </span>
         </div>
         <button type="submit" className="otp-verifyButton">
           Verify
