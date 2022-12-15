@@ -46,8 +46,13 @@ const ForgotPassword = () => {
           }
         })
         .catch((err) => {
-          // alert(err && err.response && err.response.data)
-          alert('invalid credentials')
+          alert(
+            err &&
+              err.response &&
+              err.response.data &&
+              err.response.data.message &&
+              err.response.data.message,
+          )
         })
     },
   })

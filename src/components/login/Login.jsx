@@ -72,7 +72,16 @@ const Login = () => {
           loginData.data.payload.data &&
           loginData.data.payload.data.status,
       )
-      localStorage.setItem('superAdmin', 'true')
+      sessionStorage.setItem(
+        'token',
+        loginData &&
+          loginData.data &&
+          loginData.data.payload &&
+          loginData.data.payload.headers &&
+          loginData.data.payload.headers['jwt-token'],
+      )
+      // console.log('jwt token', loginData.data.payload.headers['jwt-token'])
+      sessionStorage.setItem('login', 'superAdmin')
       navigate('/superAdminDashBoard')
     } else if (
       (loginData &&
@@ -92,7 +101,15 @@ const Login = () => {
           loginData.data.payload.data &&
           loginData.data.payload.data.status,
       )
-      localStorage.setItem('admin', 'true')
+      sessionStorage.setItem('login', 'admin')
+      sessionStorage.setItem(
+        'token',
+        loginData &&
+          loginData.data &&
+          loginData.data.payload &&
+          loginData.data.payload.headers &&
+          loginData.data.payload.headers['jwt-token'],
+      )
       navigate('/dashBoard')
     } else if (
       loginData &&

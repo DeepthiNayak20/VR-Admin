@@ -43,8 +43,13 @@ const OtpVerification = () => {
         }
       })
       .catch((err) => {
-        // alert(err.response.data)
-        alert('error')
+        alert(
+          err &&
+            err.response &&
+            err.response.data &&
+            err.response.data.Error &&
+            err.response.data.Error,
+        )
       })
   }
 

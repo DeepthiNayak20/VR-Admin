@@ -159,6 +159,7 @@
 
 table.tableItem {
   width: 100%;
+  overflow: auto;
   /* position: relative; */
   /* left: 1rem; */
   /* right: 1rem; */

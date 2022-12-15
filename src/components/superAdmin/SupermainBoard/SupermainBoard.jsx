@@ -3,13 +3,19 @@ import { NavLink } from 'react-router-dom'
 
 import './SupermainBoard.css'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const SupermainBoard = () => {
   const [date, setDate] = useState(new Date())
-
+  const mainBoarddata = useSelector((state) => state.superAdmin.data)
+  // console.log('mainBoard', mainBoarddata)
   const today = () => {
     setDate(new Date())
   }
+
+  useEffect(() => {
+    console.log('mainBoarddata', mainBoarddata)
+  }, [mainBoarddata])
 
   useEffect(() => {
     const timerId = setInterval(today, 1000)
@@ -68,7 +74,12 @@ const SupermainBoard = () => {
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
             <div className="dashboard-block-title">Total&nbsp;Admins</div>
-            <div className="dashboard-block-value">1500</div>
+            <div className="dashboard-block-value">
+              {mainBoarddata &&
+                mainBoarddata.data &&
+                mainBoarddata.data.totalCourses &&
+                mainBoarddata.data.totalCourses}
+            </div>
           </div>
           <div className="dashboard-block-img">
             <svg
@@ -95,7 +106,12 @@ const SupermainBoard = () => {
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
             <div className="dashboard-block-title">Total&nbsp;Course</div>
-            <div className="dashboard-block-value">150</div>
+            <div className="dashboard-block-value">
+              {mainBoarddata &&
+                mainBoarddata.data &&
+                mainBoarddata.data.totalNumberOfAdmins &&
+                mainBoarddata.data.totalNumberOfAdmins}
+            </div>
           </div>
           <div className="dashboard-block-img">
             <svg
@@ -132,10 +148,10 @@ const SupermainBoard = () => {
             <th>Email&nbsp;Id</th>
             <th>Mobile&nbsp;No</th>
           </tr>
-          {adminData.map((item) => {
-            console.log('item', item)
+          {adminData.map((item, i) => {
+            // console.log('item', item)
             return (
-              <tr>
+              <tr key={i}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>

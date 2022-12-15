@@ -28,7 +28,9 @@ export const LoginAsyncThunk = createAsyncThunk(
       let error = err
       console.log('error.response.data', error.response.data)
 
-      return rejectWithValue(error.response.data)
+      return rejectWithValue(
+        error && error.response && error.response.data && error.response.data,
+      )
     }
   },
 )
@@ -42,7 +44,7 @@ export const LoginSlice = createSlice({
       console.log('fetching Data...')
     })
     builder.addCase(LoginAsyncThunk.fulfilled, (state, action) => {
-      // console.log('fetched Data Successfully')
+      console.log('fetched Data Successfully', action)
       state.data = action
     })
     builder.addCase(LoginAsyncThunk.rejected, (state, action) => {

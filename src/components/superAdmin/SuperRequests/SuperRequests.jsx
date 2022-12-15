@@ -1,26 +1,74 @@
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { superAdminThunk } from '../../../redux/reducers/superAdminInfo'
 import './SuperRequests.css'
 
 const SuperRequests = () => {
-  const requestData = [
-    {
-      id: 1,
-      name: 'swwww',
-      email: 'sfds@gmail.com',
-      mobile: '3456746564',
-    },
-    {
-      id: 2,
-      name: 'bbbbb',
-      email: 'sfds@gmail.com',
-      mobile: '3456746564',
-    },
-    {
-      id: 3,
-      name: 'cccccc',
-      email: 'sfds@gmail.com',
-      mobile: '3456746564',
-    },
-  ]
+  const [requestData, setRequestData] = useState([])
+  const dispatch = useDispatch()
+
+  const data = useSelector((state) => state.superAdmin.data)
+
+  console.log('data', data && data.data && data.data)
+
+  useEffect(() => {
+    data &&
+      data.data &&
+      data.data &&
+      data.data.listOfAdmins &&
+      setRequestData(data.data.listOfAdmins)
+  }, [data])
+
+  const acceptAdmin = (data) => {
+    alert(JSON.stringify(data))
+    fetch(
+      `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/superAdmin/approve`,
+      {
+        method: 'post',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(data),
+      },
+    )
+      .then((res) => {
+        if (res.status === 202) {
+          alert('email sent')
+          dispatch(superAdminThunk())
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const rejectAdmin = (data) => {
+    alert(JSON.stringify(data))
+    fetch(
+      `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/superAdmin/reject`,
+      {
+        method: 'delete',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(data),
+      },
+    )
+      .then((res) => {
+        if (res.status === 200) {
+          alert('rejected')
+          dispatch(superAdminThunk())
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
   return (
     <div className="studentList-container">
       <div className="admin-requests">Requests</div>
@@ -36,20 +84,39 @@ const SuperRequests = () => {
               <th></th>
               <th></th>
             </tr>
-            {requestData.map((item) => {
-              console.log('item', item)
+            {requestData.map((item, i) => {
+              // console.log('item', item)
               return (
                 <tr>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.mobile}</td>
+                  <td>{i + 1}</td>
+                  <td>{item.fullName}</td>
+                  <td>{item.emailId}</td>
+                  <td>{item.mobileNumber}</td>
                   <td className=" btnApprove">
-                    <button className="acceptBtn accept">Accept</button>
+                    <button
+                      className="acceptBtn accept"
+                      onClick={() => {
+                        acceptAdmin({
+                          emailId: item.emailId,
+                          fullName: item.fullName,
+                        })
+                      }}
+                    >
+                      Accept
+                    </button>
                   </td>
                   <td className=" btnApprove">
                     {' '}
-                    <button className="acceptBtn reject">Reject</button>
+                    <button
+                      className="acceptBtn reject"
+                      onClick={() => {
+                        rejectAdmin({
+                          emailId: item.emailId,
+                        })
+                      }}
+                    >
+                      Reject
+                    </button>
                   </td>
                 </tr>
               )
