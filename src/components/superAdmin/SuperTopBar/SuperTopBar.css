@@ -75,8 +75,8 @@ img.topbar-closeImg {
   width: 23px;
 }
 
-.EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
-  width: 30% !important;
+.EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+  width: 35% !important;
 }
 
 .topBar-drawer {
@@ -93,6 +93,7 @@ img.topbar-closeImg {
 .topBar-drawerContainer {
   font-family: ProximaNovaSoft-Regular;
 }
+
 .supertopBar-Header {
   display: flex;
   justify-content: center;
@@ -100,6 +101,7 @@ img.topbar-closeImg {
   padding: 2rem 4rem 1.7rem 3rem;
   background: white;
 }
+
 .SupertopBar-imageContainer {
   display: none;
 }
@@ -124,19 +126,19 @@ img.topbar-closeImg {
     gap: 2rem;
   }
 
-  .EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+  .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
     width: 40% !important;
   }
 }
 
 @media only screen and (max-width: 1193px) {
-  .EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
-    width: 40% !important;
+  .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
+    width: 46% !important;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  .EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+  .EZDrawer .EZDrawer__checkbox:checked~.EZDrawer__container {
     width: 100% !important;
   }
 
@@ -144,6 +146,7 @@ img.topbar-closeImg {
     display: none;
   }
 }
+
 @media only screen and (max-width: 855px) {
   .supertopBar-Header {
     display: none;
@@ -152,6 +155,7 @@ img.topbar-closeImg {
     padding: 2rem 4rem 1.7rem 3rem;
     background: white;
   }
+
   .SupertopBar-imageContainer {
     display: flex;
     position: fixed;
@@ -163,13 +167,12 @@ img.topbar-closeImg {
   }
 }
 
-@media only screen and (max-width: 855px) {
-}
-@media only screen and (max-width: 855px) {
-}
-@media only screen and (max-width: 855px) {
-}
-@media only screen and (max-width: 855px) {
-}
-@media only screen and (max-width: 855px) {
-}
+@media only screen and (max-width: 855px) {}
+
+@media only screen and (max-width: 855px) {}
+
+@media only screen and (max-width: 855px) {}
+
+@media only screen and (max-width: 855px) {}
+
+@media only screen and (max-width: 855px) {}

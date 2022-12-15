@@ -1,4 +1,6 @@
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { profileAsyncThunk } from '../../../redux/reducers/profileSlice'
 
 import { showProfileFn } from '../../../redux/showProfile'
 
@@ -6,6 +8,12 @@ import './Profile.css'
 
 const Profile = () => {
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(profileAsyncThunk())
+  }, [])
+  const profileData = useSelector((state) => state.profile.data)
+  console.log('profileData', profileData.data)
+
   return (
     <div>
       <div className="profile-container">
@@ -31,21 +39,41 @@ const Profile = () => {
             className="profile-imgPic"
           />
         </div>
-        <div className="profile-picText">Virat Kohli</div>
+        <div className="profile-picText">
+          {profileData &&
+            profileData.data &&
+            profileData.data.fullName &&
+            profileData.data.fullName}
+        </div>
       </div>
       <div className="profile-body">
         <div className="profile-bodyContainer">
           <div className="profile-nameContent">
             <div className="prifile-nameStart">Name</div>
-            <div className="profile-NameEnd">Virat Kohli</div>
+            <div className="profile-NameEnd">
+              {profileData &&
+                profileData.data &&
+                profileData.data.fullName &&
+                profileData.data.fullName}
+            </div>
           </div>
           <div className="profile-nameContent">
             <div className="prifile-nameStart">Email&nbsp;ID</div>
-            <div className="profile-NameEnd">viratk@gmail.com</div>
+            <div className="profile-NameEnd">
+              {profileData &&
+                profileData.data &&
+                profileData.data.emailId &&
+                profileData.data.emailId}
+            </div>
           </div>
           <div className="profile-nameContent">
             <div className="prifile-nameStart">Mobile&nbsp;Number</div>
-            <div className="profile-NameEnd">+91&nbsp;9844635685</div>
+            <div className="profile-NameEnd">
+              {profileData &&
+                profileData.data &&
+                profileData.data.mobileNumber &&
+                profileData.data.mobileNumber}
+            </div>
           </div>
           <div className="profile-nameContent">
             <div className="prifile-nameStart">Change&nbsp;Password</div>

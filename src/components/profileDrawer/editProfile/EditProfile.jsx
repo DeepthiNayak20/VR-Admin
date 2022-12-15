@@ -1,12 +1,88 @@
 import './EditProfile.css'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { profileAsyncThunk } from '../../../redux/reducers/profileSlice'
+import axios from 'axios'
 
 const EditProfile = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(profileAsyncThunk())
+  }, [])
+  const editData = useSelector((state) => state.profile.data)
+
+  const name =
+    editData &&
+    editData.data &&
+    editData.data.fullName &&
+    editData.data.fullName
+  const [fullName, setfullName] = useState(name)
+
+  const email =
+    editData && editData.data && editData.data.emailId && editData.data.emailId
+  const [emailId, setEmailId] = useState(email)
+
+  const mobileNo =
+    editData &&
+    editData.data &&
+    editData.data.mobileNumber &&
+    editData.data.mobileNumber
+  const [mobile, setMobile] = useState(mobileNo)
+
+  const [image, setImage] = useState('')
   const loadFile = (e) => {
     var image = document.getElementById('output')
     image.src = URL.createObjectURL(e.target.files[0])
+    setImage(e.target.files[0])
   }
+
+  const editProfileHandler = (e) => {
+    e.preventDefault()
+
+    const form = document.getElementById('form')
+    let formData = new FormData(form)
+    formData.append('mobileNumber', mobile)
+    formData.append('fullName', fullName)
+    formData.append('profilePhoto', image)
+
+    const submit = {}
+    formData.forEach((val, key) => (submit[key] = val))
+
+    console.log('data to be submitted', submit)
+    console.log('submitted', formData)
+
+    axios
+      .request(
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/save`,
+        {
+          method: 'post',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+
+          data: submit,
+        },
+      )
+      .then((res) => {
+        alert('Successfull')
+        console.log('edit result', res)
+      })
+      .catch((err) => {
+        // alert(err.response.data)
+        alert('error')
+        console.log('edit error', err)
+      })
+  }
+
   return (
-    <div>
+    <form
+      id="form"
+      onSubmit={(e) => {
+        editProfileHandler(e)
+      }}
+    >
       <div className="editProfile-container">
         <div className="editProfilr-mainText">Edit Profile</div>
         <div class="profile-pic">
@@ -46,14 +122,17 @@ const EditProfile = () => {
           />
         </div>
       </div>
+      {/* edit form */}
       <div className="editProfile-form">
-        <form action="" className="editProfile-formController">
+        <div className="editProfile-formController">
           <div className="editProfile-body">
             <div className="profile-bodyContainer">
               <input
                 type="text"
-                id="fullName"
-                name="fullName"
+                value={fullName}
+                onChange={(e) => {
+                  setfullName(e.target.value)
+                }}
                 placeholder=" "
                 className="login-input editProfilr-color"
               />
@@ -61,11 +140,11 @@ const EditProfile = () => {
                 Full&nbsp;Name
               </label>
             </div>
+
             <div className="profile-bodyContainer">
               <input
                 type="text"
-                id="emailId"
-                name="emailId"
+                value={emailId}
                 placeholder=" "
                 className="login-input editProfilr-color"
               />
@@ -76,8 +155,10 @@ const EditProfile = () => {
             <div className="profile-bodyContainer">
               <input
                 type="text"
-                id="mobileNo"
-                name="mobileNo"
+                value={mobile}
+                onChange={(e) => {
+                  setMobile(e.target.value)
+                }}
                 placeholder=" "
                 className="login-input editProfilr-color"
               />
@@ -91,9 +172,9 @@ const EditProfile = () => {
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   )
 }
 

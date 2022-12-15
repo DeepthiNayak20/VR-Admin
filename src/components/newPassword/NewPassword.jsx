@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
 const NewPassword = () => {
+  const navigate = useNavigate()
   const EmailIdEntered = useSelector((state) => state.emailSend.emailId)
   const formik = useFormik({
     initialValues: {
@@ -26,7 +28,7 @@ const NewPassword = () => {
     onSubmit: (values) => {
       console.log('new password', values)
       axios(
-        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/verify`,
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/resetPassword`,
         {
           method: 'put',
           headers: {
@@ -41,9 +43,11 @@ const NewPassword = () => {
       )
         .then((res) => {
           if (res) {
-            alert('valid otp')
-            // alert(res.data)
-            console.log('res.dataotp', res)
+            // alert('password')
+            if (res.status === 200) {
+              alert(res && res.data && res.data.message)
+              navigate('/')
+            }
           }
         })
         .catch((err) => {

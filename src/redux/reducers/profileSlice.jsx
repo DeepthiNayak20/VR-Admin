@@ -10,13 +10,13 @@ const initialState = {
   loading: false,
 }
 
-export const superAdminThunk = createAsyncThunk(
-  'superAdminInfo/superAdminThunk',
+export const profileAsyncThunk = createAsyncThunk(
+  'profileSlice/profileAsyncThunk',
   async () => {
     try {
       const fetchedData = await axios.request({
         method: 'get',
-        url: `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/superAdmin/admins`,
+        url: `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/getProfile`,
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('token')}`,
         },
@@ -32,25 +32,25 @@ export const superAdminThunk = createAsyncThunk(
   },
 )
 
-export const superAdminInfo = createSlice({
-  name: 'superAdmin',
+export const profileSlice = createSlice({
+  name: 'profile',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(superAdminThunk.pending, (state, action) => {
+    builder.addCase(profileAsyncThunk.pending, (state, action) => {
       // Add user to the state array
       state.loading = true
     })
-    builder.addCase(superAdminThunk.fulfilled, (state, action) => {
-      console.log('super admin :data fetched successfully')
+    builder.addCase(profileAsyncThunk.fulfilled, (state, action) => {
+      console.log('profile :data fetched successfully')
       state.loading = false
       state.data = action.payload
       state.headers = action
       state.isSuccess = true
     })
-    builder.addCase(superAdminThunk.rejected, (state, action) => {
-      console.log('super admin :data rejected')
+    builder.addCase(profileAsyncThunk.rejected, (state, action) => {
+      console.log('profile :data rejected')
       state.message = action.payload
       state.loading = false
       state.isRejected = true
@@ -58,4 +58,4 @@ export const superAdminInfo = createSlice({
   },
 })
 
-export default superAdminInfo
+export default profileSlice

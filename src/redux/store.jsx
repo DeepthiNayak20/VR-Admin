@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import EmailSlice from './reducers/EmailSlice'
 import LoginSlice from './reducers/LoginSlice'
+import profileSlice from './reducers/profileSlice'
 import regDetailsSlice from './reducers/regDetailSlice'
 import superAdminInfo from './reducers/superAdminInfo'
 
@@ -13,5 +14,6 @@ export const store = configureStore({
     emailSend: EmailSlice.reducer,
     regDetails: regDetailsSlice.reducer,
     superAdmin: superAdminInfo.reducer,
+    profile: profileSlice.reducer,
   },
 })
