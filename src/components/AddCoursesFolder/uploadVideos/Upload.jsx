@@ -20,7 +20,7 @@ const Upload = () => {
   const [uploadSuccessful, setUploadSuccessful] = useState(true)
   const [videoCategory, setVideoCategory] = useState([])
   const [videoSubCategory, setVideoSubCategory] = useState([])
-  const [cloudinaryVideo, setcloudinaryVideo] = useState('')
+
   const description = useSelector((state) => state.description)
   const dispatch = useDispatch()
 
@@ -65,6 +65,7 @@ const Upload = () => {
 
   const uploadVideosHandler = (e) => {
     e.preventDefault()
+
     alert('clicked')
     const formData = {
       videoCategory: e.target.videoCategory.value,
@@ -87,39 +88,6 @@ const Upload = () => {
   const overViewData = (formData) => {
     console.log('form data', formData)
   }
-
-  //cloudinary upload
-  function uploadFile(files) {
-    const cloudName = 'dnpwcmx6u'
-    const uploadPreset = 'izdv8fsd'
-    const url = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload/`
-    const timestamp = Date.now() / 1000
-    const x = files[0]
-    console.log('files', x.file.name)
-
-    const uploadfile = x.file
-
-    let formData = new FormData()
-    formData.append('api_key', '694173934399617')
-    formData.append('file', uploadfile)
-    formData.append('public_id', x.file.name)
-    formData.append('timestamp', timestamp)
-    formData.append('upload_preset', uploadPreset)
-
-    axios
-      .post(url, formData)
-      .then((result) => {
-        console.log('Result', result)
-        setcloudinaryVideo(result)
-
-        alert('Video upload successful')
-      })
-      .catch((err) => {
-        console.log(err)
-        alert('upload failed')
-      })
-  }
-  //cloudinary upload
 
   return (
     <div>

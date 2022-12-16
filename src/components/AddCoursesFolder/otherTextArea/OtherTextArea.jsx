@@ -1,5 +1,71 @@
+import axios from 'axios'
+import { useState } from 'react'
 import './OtherTextArea.css'
 const OtherTextArea = () => {
+  const [cloudinaryVideo, setcloudinaryVideo] = useState('')
+
+  //cloudinary upload
+  function uploadVideoPreview(e) {
+    const cloudName = 'dtp1d46p6'
+    const uploadPreset = 'j4ygtykr'
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload/`
+    const timestamp = Date.now() / 1000
+    const previewVideo = e.target.files[0]
+    console.log('files', previewVideo)
+
+    let formData = new FormData()
+    formData.append('api_key', '694173934399617')
+    formData.append('file', previewVideo)
+    formData.append('public_id', 'video') //this should be changed
+    formData.append('timestamp', timestamp)
+    formData.append('upload_preset', uploadPreset)
+
+    axios
+      .post(url, formData)
+      .then((result) => {
+        console.log('Result', result)
+        setcloudinaryVideo(result)
+
+        alert('Video upload successful')
+        console.log('uploaded', result)
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('upload failed')
+      })
+  }
+  //cloudinary upload
+
+  function uploadPhoto(e) {
+    const cloudName = 'dtp1d46p6'
+    const uploadPreset = 'j4ygtykr'
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/photo/upload/`
+    const timestamp = Date.now() / 1000
+    const previewVideo = e.target.files[0]
+    console.log('files', previewVideo)
+
+    let formData = new FormData()
+    formData.append('api_key', '694173934399617')
+    formData.append('file', previewVideo)
+    formData.append('public_id', 'video') //this should be changed
+    formData.append('timestamp', timestamp)
+    formData.append('upload_preset', uploadPreset)
+
+    axios
+      .post(url, formData)
+      .then((result) => {
+        console.log('Result', result)
+        // setcloudinaryVideo(result)
+
+        alert('Phto upload successful')
+        console.log('uploaded', result)
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('upload failed')
+      })
+  }
+
   return (
     <div>
       <div className="upload-videoCategoryFileds">
@@ -31,6 +97,9 @@ const OtherTextArea = () => {
           <div className="upload-title">Course Thumbnail</div>
           <input
             type="file"
+            onChange={(e) => {
+              uploadPhoto(e)
+            }}
             name="imageUpload"
             accept="image/png, image/jpeg"
             placeholder="Video Title"
@@ -43,6 +112,9 @@ const OtherTextArea = () => {
           <input
             type="file"
             name="videoUpload"
+            onChange={(e) => {
+              uploadVideoPreview(e)
+            }}
             accept="video/*"
             placeholder="Video Category"
             className="upload-inputField category"
