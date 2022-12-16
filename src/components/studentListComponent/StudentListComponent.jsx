@@ -36,7 +36,6 @@ import { Avatar, Grid, makeStyles, styled } from '@mui/material'
 //   padding: 0,
 // })
 
-
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
@@ -420,7 +419,10 @@ export default function EnhancedTable() {
                           width: '100%',
                         }}
                       >
-                        <TableCell padding="checkbox" onClick={(event) => handleClick(event, row.name)}>
+                        <TableCell
+                          padding="checkbox"
+                          onClick={(event) => handleClick(event, row.name)}
+                        >
                           <Checkbox
                             color="primary"
                             checked={isItemSelected}

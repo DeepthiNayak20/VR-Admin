@@ -1,5 +1,5 @@
 import './Upload.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Accordion,
   AccordionItem,
@@ -12,30 +12,123 @@ import UploadMultipleVideos from '../uploadMultipleVideos/UploadMultipleVideos'
 import RichTextEditor from '../richTextEditor/RichTextEditor'
 import OtherTextArea from '../otherTextArea/OtherTextArea'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { storeoverViewData } from '../../../redux/reducers/overViewSlice'
 
 const Upload = () => {
   const [counterVideo, setCounterVideo] = useState(0)
   const [uploadSuccessful, setUploadSuccessful] = useState(true)
+  const [videoCategory, setVideoCategory] = useState([])
+  const [videoSubCategory, setVideoSubCategory] = useState([])
+  const [cloudinaryVideo, setcloudinaryVideo] = useState('')
+  const description = useSelector((state) => state.description)
+  const dispatch = useDispatch()
 
   const addVideoHandler = () => {
     setCounterVideo(counterVideo + 1)
     // console.log(counter)
   }
-  const videoCategoryHandler = () => {
-    console.log('hello')
-    const fetchedData = axios.request({
-      method: 'get',
-      url: `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/getProfile`,
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-      },
-    })
-    console.log(fetchedData)
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/categories`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        },
+      )
+      .then((res) => {
+        // alert('data')
+        console.log('data', res.data)
+        setVideoCategory(res.data)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/subCategories`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        },
+      )
+      .then((res) => {
+        // alert('data')
+        // console.log('data', res.data)
+        setVideoSubCategory(res.data)
+      })
+  }, [])
+
+  const uploadVideosHandler = (e) => {
+    e.preventDefault()
+    alert('clicked')
+    const formData = {
+      videoCategory: e.target.videoCategory.value,
+      videoSubCategory: e.target.videoSubCategory.value,
+      tagline: e.target.tagline.value,
+      videoTitle: e.target.videoTitle.value,
+      description:
+        description && description.description && description.description,
+      courseOutcome: e.target.courseOutcome.value,
+      requirements: e.target.requirements.value,
+      imageUpload: e.target.imageUpload.value,
+      videoUpload: e.target.videoUpload.value,
+      difficultyLevel: e.target.difficultyLevel.value,
+      courseKeyWord: e.target.courseKeyWord.value,
+    }
+
+    overViewData()
+    dispatch(storeoverViewData(formData))
   }
+  const overViewData = (formData) => {
+    console.log('form data', formData)
+  }
+
+  //cloudinary upload
+  function uploadFile(files) {
+    const cloudName = 'dnpwcmx6u'
+    const uploadPreset = 'izdv8fsd'
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload/`
+    const timestamp = Date.now() / 1000
+    const x = files[0]
+    console.log('files', x.file.name)
+
+    const uploadfile = x.file
+
+    let formData = new FormData()
+    formData.append('api_key', '694173934399617')
+    formData.append('file', uploadfile)
+    formData.append('public_id', x.file.name)
+    formData.append('timestamp', timestamp)
+    formData.append('upload_preset', uploadPreset)
+
+    axios
+      .post(url, formData)
+      .then((result) => {
+        console.log('Result', result)
+        setcloudinaryVideo(result)
+
+        alert('Video upload successful')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('upload failed')
+      })
+  }
+  //cloudinary upload
+
   return (
     <div>
       <div className="upload-container">
-        <form action="" className="upload-formController">
+        <form
+          id="form"
+          className="upload-formController"
+          onSubmit={uploadVideosHandler}
+        >
           <div className="upload-videoCategory">
             <div>
               {' '}
@@ -46,43 +139,50 @@ const Upload = () => {
                   name="videoTitle"
                   placeholder="Video Title"
                   className="upload-inputField title"
+                  required
                 />
               </div>
             </div>
+            {/* video category */}
             <div className="upload-videoSubCategory">
               <div className="upload-dropDown">
                 <div className="upload-title">Video&nbsp;Category</div>
+
                 <div className="upload-videoTitle">
-                  <select
-                    name="videoCategory"
-                    className="upload-select"
-                    onClick={() => {
-                      videoCategoryHandler()
-                    }}
-                  >
-                    <option
-                      value="Setting up a new project"
-                      className="QandA-option"
-                    >
-                      Setting up a new project
-                    </option>
-                    <option value="ReactJS"> ReactJS</option>
-                    <option value="Web design">Web design</option>
+                  <select name="videoCategory" className="upload-select">
+                    {videoCategory &&
+                      videoCategory.map((cat, i) => {
+                        // console.log('cat', cat.categoryName)
+                        return (
+                          <option
+                            value={cat.categoryName}
+                            className="QandA-option"
+                            key={i}
+                          >
+                            {cat.categoryName}
+                          </option>
+                        )
+                      })}
                   </select>
                 </div>
               </div>
+              {/* video sub category */}
               <div className="upload-dropDown">
                 <div className="upload-title">Video&nbsp;Sub&nbsp;Category</div>
                 <div className="upload-videoTitle">
                   <select name="videoSubCategory" className="upload-select">
-                    <option
-                      value="Setting up a new project"
-                      className="QandA-option"
-                    >
-                      Setting up a new project
-                    </option>
-                    <option value="ReactJS"> ReactJS</option>
-                    <option value="Web design">Web design</option>
+                    {videoSubCategory &&
+                      videoSubCategory.map((cat) => {
+                        // console.log('cat', cat.subCategoryName)
+                        return (
+                          <option
+                            value={cat.subCategoryName}
+                            className="QandA-option"
+                          >
+                            {cat.subCategoryName}
+                          </option>
+                        )
+                      })}
                   </select>
                 </div>
               </div>
@@ -97,6 +197,7 @@ const Upload = () => {
                 <textarea
                   name="tagline"
                   className="upload-inputField tagline"
+                  required
                 ></textarea>
               </div>
             </div>
@@ -201,9 +302,7 @@ const Upload = () => {
             )
           })}
           <div className="Upload-buttonPublish">
-            <button type="submit" className="QandA-Button">
-              Publish
-            </button>
+            <button className="QandA-Button">Save</button>
           </div>
         </form>
       </div>

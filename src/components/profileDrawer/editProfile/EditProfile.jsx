@@ -79,6 +79,8 @@ const EditProfile = () => {
       })
   }
 
+  //
+
   return (
     <form
       id="form"
@@ -114,6 +116,7 @@ const EditProfile = () => {
             id="file"
             type="file"
             className="editProfile-inputType"
+            accept="image/png, image/jpeg"
             onChange={(e) => {
               loadFile(e)
             }}

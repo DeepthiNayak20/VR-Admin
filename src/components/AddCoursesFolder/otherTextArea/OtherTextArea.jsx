@@ -10,6 +10,7 @@ const OtherTextArea = () => {
             <textarea
               name="courseOutcome"
               className="upload-inputField "
+              required
             ></textarea>
           </div>
         </div>
@@ -19,6 +20,7 @@ const OtherTextArea = () => {
             <textarea
               name="requirements"
               className="upload-inputField "
+              required
             ></textarea>
           </div>
         </div>
@@ -26,23 +28,25 @@ const OtherTextArea = () => {
       <div className="upload-videoCategoryFiles">
         <div>
           {' '}
-          <div className="upload-title">Image&nbsp;Upload</div>
+          <div className="upload-title">Course Thumbnail</div>
           <input
             type="file"
             name="imageUpload"
             accept="image/png, image/jpeg"
             placeholder="Video Title"
             className="upload-inputField title"
+            required
           />
         </div>
         <div>
-          <div className="upload-title">Video&nbsp;Upload</div>
+          <div className="upload-title">Preview Video</div>
           <input
             type="file"
             name="videoUpload"
             accept="video/*"
             placeholder="Video Category"
             className="upload-inputField category"
+            required
           />
         </div>
       </div>
