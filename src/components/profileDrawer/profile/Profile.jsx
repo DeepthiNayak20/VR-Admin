@@ -12,7 +12,6 @@ const Profile = () => {
     dispatch(profileAsyncThunk())
   }, [])
   const profileData = useSelector((state) => state.profile.data)
-  console.log('profileData', profileData.data)
 
   return (
     <div>
@@ -34,7 +33,12 @@ const Profile = () => {
       <div className="profile-profilePic">
         <div className="profile-img">
           <img
-            src={require('../../../assets/Screenshot 2022-05-16 104609.png')}
+            src={
+              profileData &&
+              profileData.data &&
+              profileData.data.profilePhoto &&
+              profileData.data.profilePhoto
+            }
             alt=""
             className="profile-imgPic"
           />

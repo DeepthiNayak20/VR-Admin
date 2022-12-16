@@ -4,10 +4,12 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { storePass } from '../../redux/reducers/regDetailSlice'
+import { useNavigate } from 'react-router-dom'
 // import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
@@ -206,6 +208,15 @@ const SignUp = () => {
                   Register
                 </button>
               </div>
+            </div>
+            <div
+              className="signUp-text"
+              onClick={() => {
+                navigate('/')
+              }}
+            >
+              Already have an account?&nbsp;
+              <span className="span-btn">Log&nbsp;In</span>
             </div>
           </div>
         </form>

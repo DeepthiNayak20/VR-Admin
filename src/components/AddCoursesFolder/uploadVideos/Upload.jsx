@@ -11,6 +11,7 @@ import 'react-accessible-accordion/dist/fancy-example.css'
 import UploadMultipleVideos from '../uploadMultipleVideos/UploadMultipleVideos'
 import RichTextEditor from '../richTextEditor/RichTextEditor'
 import OtherTextArea from '../otherTextArea/OtherTextArea'
+import axios from 'axios'
 
 const Upload = () => {
   const [counterVideo, setCounterVideo] = useState(0)
@@ -19,6 +20,17 @@ const Upload = () => {
   const addVideoHandler = () => {
     setCounterVideo(counterVideo + 1)
     // console.log(counter)
+  }
+  const videoCategoryHandler = () => {
+    console.log('hello')
+    const fetchedData = axios.request({
+      method: 'get',
+      url: `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/getProfile`,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+    })
+    console.log(fetchedData)
   }
   return (
     <div>
@@ -41,7 +53,13 @@ const Upload = () => {
               <div className="upload-dropDown">
                 <div className="upload-title">Video&nbsp;Category</div>
                 <div className="upload-videoTitle">
-                  <select name="videoCategory" className="upload-select">
+                  <select
+                    name="videoCategory"
+                    className="upload-select"
+                    onClick={() => {
+                      videoCategoryHandler()
+                    }}
+                  >
                     <option
                       value="Setting up a new project"
                       className="QandA-option"

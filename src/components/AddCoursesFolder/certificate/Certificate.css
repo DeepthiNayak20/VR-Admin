@@ -316,6 +316,7 @@ img.certificateImage {
     display: flex;
     flex-direction: row;
     width: 59%;
+    gap: 2rem;
   }
 
   .certificate-left {
@@ -433,23 +434,16 @@ img.certificateImage {
   }
 }
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}
 
-@media screen and (max-width: 1033px) {
-}
+@media screen and (max-width: 1033px) {}

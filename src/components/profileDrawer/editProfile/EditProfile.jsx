@@ -1,14 +1,21 @@
 import './EditProfile.css'
+
 import { useEffect, useState } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
+
 import { profileAsyncThunk } from '../../../redux/reducers/profileSlice'
+
 import axios from 'axios'
+import { showProfileFn } from '../../../redux/showProfile'
 
 const EditProfile = () => {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(profileAsyncThunk())
   }, [])
+
   const editData = useSelector((state) => state.profile.data)
 
   const name =
@@ -16,10 +23,12 @@ const EditProfile = () => {
     editData.data &&
     editData.data.fullName &&
     editData.data.fullName
+
   const [fullName, setfullName] = useState(name)
 
   const email =
     editData && editData.data && editData.data.emailId && editData.data.emailId
+
   const [emailId, setEmailId] = useState(email)
 
   const mobileNo =
@@ -27,29 +36,23 @@ const EditProfile = () => {
     editData.data &&
     editData.data.mobileNumber &&
     editData.data.mobileNumber
-  const [mobile, setMobile] = useState(mobileNo)
 
+  const [mobile, setMobile] = useState(mobileNo)
   const [image, setImage] = useState('')
   const loadFile = (e) => {
     var image = document.getElementById('output')
+
     image.src = URL.createObjectURL(e.target.files[0])
     setImage(e.target.files[0])
   }
 
   const editProfileHandler = (e) => {
     e.preventDefault()
-
     const form = document.getElementById('form')
-    let formData = new FormData(form)
-    formData.append('mobileNumber', mobile)
+    const formData = new FormData(form)
     formData.append('fullName', fullName)
-    formData.append('profilePhoto', image)
-
-    const submit = {}
-    formData.forEach((val, key) => (submit[key] = val))
-
-    console.log('data to be submitted', submit)
-    console.log('submitted', formData)
+    formData.append('mobileNumber', mobile)
+    image !== '' && formData.append('profilePhoto', image)
 
     axios
       .request(
@@ -58,16 +61,16 @@ const EditProfile = () => {
           method: 'post',
           headers: {
             Accept: 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
+            'Content-type': ' multipart/form-date',
             Authorization: `Bearer ${sessionStorage.getItem('token')}`,
           },
-
-          data: submit,
+          data: formData,
         },
       )
       .then((res) => {
-        alert('Successfull')
         console.log('edit result', res)
+        dispatch(profileAsyncThunk())
+        dispatch(showProfileFn('profile'))
       })
       .catch((err) => {
         // alert(err.response.data)
@@ -106,6 +109,7 @@ const EditProfile = () => {
               </svg>
             </span>
           </label>
+
           <input
             id="file"
             type="file"
@@ -114,15 +118,23 @@ const EditProfile = () => {
               loadFile(e)
             }}
           />
+
           <img
-            src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+            src={
+              editData &&
+              editData.data &&
+              editData.data.profilePhoto &&
+              editData.data.profilePhoto
+            }
             id="output"
             className="editProfile-output"
             alt=""
           />
         </div>
       </div>
+
       {/* edit form */}
+
       <div className="editProfile-form">
         <div className="editProfile-formController">
           <div className="editProfile-body">
@@ -136,6 +148,7 @@ const EditProfile = () => {
                 placeholder=" "
                 className="login-input editProfilr-color"
               />
+
               <label htmlFor="fullName" className="login-lable">
                 Full&nbsp;Name
               </label>
@@ -148,10 +161,12 @@ const EditProfile = () => {
                 placeholder=" "
                 className="login-input editProfilr-color"
               />
+
               <label htmlFor="emailId" className="login-lable">
                 Email&nbsp;ID
               </label>
             </div>
+
             <div className="profile-bodyContainer">
               <input
                 type="text"
@@ -162,10 +177,12 @@ const EditProfile = () => {
                 placeholder=" "
                 className="login-input editProfilr-color"
               />
+
               <label htmlFor="mobileNo" className="login-lable">
                 Mobile&nbsp;Number
               </label>
             </div>
+
             <div className="changePassword-buttonContaier">
               <button type="submit" className="changePAssword-button">
                 Save

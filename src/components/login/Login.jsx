@@ -182,7 +182,7 @@ const Login = () => {
           >
             Forgot Password ?
           </div>
-          <div className="button-loginContainer">
+          {/* <div className="button-loginContainer">
             <div className="login-buttonContainer">
               <button type="submit" className="login-loginButtonn">
                 Login
@@ -199,6 +199,20 @@ const Login = () => {
                 Sign Up
               </button>
             </div>
+          </div> */}
+          <div className="login-buttonContainer">
+            <button type="submit" className="login-loginButton">
+              Login
+            </button>
+          </div>
+          <div
+            className="signUp-text"
+            onClick={() => {
+              navigate('/signUp')
+            }}
+          >
+            Don't have an account?&nbsp;
+            <span className="span-btn">Sign&nbsp;Up</span>
           </div>
         </div>
       </form>

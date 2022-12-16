@@ -17,6 +17,8 @@ const TopBar = () => {
     setIsOpen((prevState) => !prevState)
   }
 
+  const editData = useSelector((state: any) => state.profile.data)
+
   const showProfile = useSelector((state: any) => state.showProfile.show)
   return (
     <div>
@@ -46,12 +48,23 @@ const TopBar = () => {
             >
               <div className="topBar-profileItem">
                 <img
-                  src={require('../../assets/Screenshot 2022-05-16 104609.png')}
+                  src={
+                    editData &&
+                    editData.data &&
+                    editData.data.profilePhoto &&
+                    editData.data.profilePhoto
+                  }
                   alt=""
                   className="topBar-profileIcon"
                 />
               </div>
-              <div className="topBar-profileText">Manjay Gupta</div>
+              <div className="topBar-profileText">
+                {' '}
+                {editData &&
+                  editData.data &&
+                  editData.data.fullName &&
+                  editData.data.fullName}
+              </div>
             </div>
           </div>
         </div>

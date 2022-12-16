@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import EnhancedTable from '../studentListComponent/StudentListComponent'
@@ -5,6 +6,25 @@ import './MainBoard.css'
 
 const MainBoard = () => {
   const [date, setDate] = useState(new Date())
+  const [dashboardData, setDashboardData] = useState({})
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://virtuallearnadmin-env.eba-vvpawj4n.ap-south-1.elasticbeanstalk.com/admin/dashBoard/header`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        },
+      )
+      .then((res) => {
+        setDashboardData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   const today = () => {
     setDate(new Date())
@@ -54,7 +74,11 @@ const MainBoard = () => {
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
             <div className="dashboard-block-title">Total&nbsp;Students</div>
-            <div className="dashboard-block-value">1500</div>
+            <div className="dashboard-block-value">
+              {dashboardData &&
+                dashboardData.totalStudentsEnrolled &&
+                dashboardData.totalStudentsEnrolled}
+            </div>
           </div>
           <div className="dashboard-block-img">
             <svg
@@ -80,7 +104,12 @@ const MainBoard = () => {
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
             <div className="dashboard-block-title">Overall&nbsp;Students</div>
-            <div className="dashboard-block-value">78%</div>
+            <div className="dashboard-block-value">
+              {dashboardData &&
+                dashboardData.overallResult &&
+                dashboardData.overallResult}
+              %
+            </div>
           </div>
           <div className="dashboard-block-img">
             <svg
@@ -106,7 +135,11 @@ const MainBoard = () => {
         <div className="dashboard-block1">
           <div className="dashboard-block-text">
             <div className="dashboard-block-title">Total&nbsp;Course</div>
-            <div className="dashboard-block-value">150</div>
+            <div className="dashboard-block-value">
+              {dashboardData &&
+                dashboardData.totalCoursesAdded &&
+                dashboardData.totalCoursesAdded}
+            </div>
           </div>
           <div className="dashboard-block-img">
             <svg
